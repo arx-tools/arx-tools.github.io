@@ -26,13 +26,27 @@
   <body>
     <h1>Ambience Gallery</h1>
 
-    <a href="/">&laquo; back</a>
+    <nav class="breadcrumbs">
+      you are here:
+      <ul>
+        <li><a href="/">home</a></li>
+        <li>Ambience Gallery</li>
+      </ul>
+    </nav>
 
     <h2>Installation</h2>
 
-    <p>Step 1: <a href="/downloads/ambience-gallery.zip" id="download">download the zip containing the map files</a></p>
-    <p>Step 2: Extract the contents of the zip file to the Arx Fatalis/Arx Libertatis game directory</p>
-    <p>Step 3: Start a new game</p>
+    <p>
+      Step 1: download
+      <a href="/downloads/ambience-gallery.zip" id="download">ambience-gallery.zip</a> containing the map files
+    </p>
+    <p>
+      Step 2: (optional) Verify the file against this hash
+      <code>bb514f8c0c20a6f7b3e6cbefe2501faed60b4826a2b907993db1363e902824bb</code> (sha256)
+      <small>[<a href="/how-to-verify-downloaded-files.html">how do I do that?</a>]</small>
+    </p>
+    <p>Step 3: Extract the contents of the zip file to the Arx Fatalis/Arx Libertatis game directory</p>
+    <p>Step 4: Start a new game</p>
 
     <h2>The level</h2>
 
@@ -43,8 +57,15 @@
     <h2>Screenshots</h2>
 
     <div>
-      <img src="/ambience-gallery/preview.png" alt="Ambience Gallery preview 1" width="800" />
-      <img src="/ambience-gallery/preview2.png" alt="Ambience Gallery preview 2" width="800" />
+      <figure>
+        <img src="/ambience-gallery/preview.webp" alt="" />
+        <figcaption>Ambience Gallery in-game preview</figcaption>
+      </figure>
+
+      <figure>
+        <img src="/ambience-gallery/preview2.webp" alt="" />
+        <figcaption>Gallery in-game preview with Arx Libertatis debugging tools</figcaption>
+      </figure>
     </div>
 
     <script>
@@ -55,7 +76,5 @@
         });
       });
     </script>
-
-    <p>Last update: 2023.01.17.</p>
   </body>
 </html>
