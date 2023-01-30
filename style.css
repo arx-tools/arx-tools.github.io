@@ -76,3 +76,7 @@ figure figcaption {
 .breadcrumbs ul li:first-child::before {
   content: none;
 }
+
+em > a {
+  font-weight: normal;
+}
