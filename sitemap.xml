@@ -4,19 +4,34 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
 <url>
   <loc>https://arx-tools.github.io/</loc>
-  <lastmod>2023-01-20T16:20:24+00:00</lastmod>
+  <lastmod>2023-04-09T13:56:25+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://arx-tools.github.io/ambience-gallery/index.html</loc>
-  <lastmod>2023-01-20T16:20:24+00:00</lastmod>
+  <loc>https://arx-tools.github.io/maps/</loc>
+  <lastmod>2023-04-09T13:56:25+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arx-tools.github.io/tools/</loc>
+  <lastmod>2023-04-09T13:56:25+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/how-to-verify-downloaded-files.html</loc>
-  <lastmod>2023-01-20T16:20:24+00:00</lastmod>
+  <lastmod>2023-04-09T13:56:25+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>https://arx-tools.github.io/maps/ambience-gallery/</loc>
+  <lastmod>2023-04-09T13:56:25+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>
