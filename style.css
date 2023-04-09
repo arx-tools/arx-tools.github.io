@@ -9,7 +9,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding-bottom: 100px;
-  background: #fff7ee;
+  background: #f6f6f6;
   color: #000811;
 }
 
@@ -79,4 +79,35 @@ figure figcaption {
 
 em > a {
   font-weight: normal;
+}
+
+.gallery {
+  margin: 20px 0;
+}
+.gallery ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.gallery ul li {
+  width: calc(100% / 3 - 10px);
+  list-style: none;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+.gallery a {
+  display: block;
+  padding: 2px;
+  border: 1px solid #c0c0c0;
+  box-sizing: border-box;
+}
+.gallery span {
+  text-align: center;
+  display: block;
+  font-weight: normal;
+}
+.gallery img {
+  width: 100%;
 }
