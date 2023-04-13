@@ -10,32 +10,37 @@
 
 <url>
   <loc>https://arx-tools.github.io/</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/maps/</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://arx-tools.github.io/mods/</loc>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/tools/</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/how-to-verify-downloaded-files.html</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/maps/ambience-gallery/</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://arx-tools.github.io/maps/sequencer/</loc>
-  <lastmod>2023-04-09T19:51:55+00:00</lastmod>
+  <lastmod>2023-04-13T07:21:48+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
