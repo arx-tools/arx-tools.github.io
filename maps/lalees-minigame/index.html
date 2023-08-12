@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lalee's minigame - Arx Fatalis Mods and Tools</title>
+    <meta name="description" content="A simple map for promoting Lalee's youtube channel" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta property="og:title" content="Lalee's minigame - Arx Fatalis Mods and Tools" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/maps/lalees-minigame/preview.webp" />
+    <meta property="og:url" content="https://arx-tools.github.io/maps/lalees-minigame/" />
+    <meta property="og:description" content="A simple map for promoting Lalee's youtube channel" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Arx Fatalis Mods and Tools" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/style.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46PP2G9DHR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-46PP2G9DHR");
+    </script>
+  </head>
+  <body>
+    <h1>Lalee's minigame</h1>
+
+    <nav class="breadcrumbs">
+      You are here:
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/maps/">Maps</a></li>
+        <li>Lalee's minigame</li>
+      </ul>
+    </nav>
+
+    <h2>Installation</h2>
+
+    <p>
+      Step 1: download
+      <a href="/downloads/lalees-minigame.zip" id="download">lalees-minigame.zip</a> containing the map files
+    </p>
+    <p>
+      Step 2: (optional) Verify the file against this hash
+      <code>2aaa8a1e030e1e161ef0798bb74177cb0decb7d213a5b9b07200ce234a1fa216</code> (sha256)
+      <small>[<a href="/how-to-verify-downloaded-files.html">how do I do that?</a>]</small>
+    </p>
+    <p>Step 3: Extract the contents of the zip file to the Arx Fatalis/Arx Libertatis game directory</p>
+    <p>Step 4: Start a new game</p>
+
+    <h2>The level</h2>
+
+    <p>You need assemble a collection of shitty pc games by finding 8 games hidden throughout the map.</p>
+
+    <h2>Screenshots</h2>
+
+    <div>
+      <figure>
+        <img src="/maps/lalees-minigame/preview.webp" alt="" />
+        <figcaption>Lalee's minigame in-game preview</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      <em>
+        Source code at:
+        <a href="https://github.com/meszaros-lajos-gyorgy/arx-map-lalees-minigame">
+          https://github.com/meszaros-lajos-gyorgy/arx-map-lalees-minigame
+        </a>
+      </em>
+    </p>
+
+    <script>
+      document.getElementById("download").addEventListener("click", () => {
+        gtag("event", "Downloads", {
+          event_category: "map",
+          event_label: "lalees-minigame",
+        });
+      });
+    </script>
+  </body>
+</html>
