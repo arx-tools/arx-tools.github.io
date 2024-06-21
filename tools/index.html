@@ -13,36 +13,33 @@
     <meta property="og:site_name" content="Arx Fatalis Mods and Tools" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/style.css" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-46PP2G9DHR"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-46PP2G9DHR");
-    </script>
   </head>
   <body>
-    <h1>Tools</h1>
+    <header>
+      <img src="/arx-fatalis-logo.webp" alt="Arx Fatalis" />
+      <h1>Mods and Tools</h1>
 
-    <nav class="breadcrumbs">
-      You are here:
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li>Tools</li>
-      </ul>
-    </nav>
+      <nav class="breadcrumbs">
+        You are here:
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>Tools</li>
+        </ul>
+      </nav>
+    </header>
 
-    <div>
+    <main>
+      <h2>Tools</h2>
+
       <ul>
         <li>
           <a href="https://github.com/fredlllll/ArxLibertatisModManager" target="_blank">ArxLibertatisModManager</a>
-          &mdash; GUI Mod Manager for Arx Fatalis mods
+          &mdash; A graphical application for managing Arx Fatalis mods (requires
+          <a href="https://arx-libertatis.org/" target="_blank">Arx Libertatis</a>)
         </li>
         <li>
           <a href="https://github.com/arx-tools/arx-level-generator" target="_blank">arx-level-generator</a>
-          &mdash; generates maps for Arx Fatalis
+          &mdash; A suite of tools for generating Arx Fatalis maps from code
         </li>
         <li>
           <a href="https://github.com/fredlllll/arx-mesh-editor" target="_blank">arx-mesh-editor</a>
@@ -50,17 +47,17 @@
         </li>
         <li>
           <a href="https://github.com/arx-tools/arx-convert" target="_blank">arx-convert</a>
-          &mdash; converts various Arx Fatalis formats to JSON/YAML and back
+          &mdash; A command line tool for converting various custom Arx Fatalis formats to JSON/YAML and back
         </li>
         <li>
           <a href="https://github.com/fredlllll/ArxLibertatisEditorIO" target="_blank">ArxLibertatisEditorIO</a>
-          &mdash; C# Library to read and write various Arx Fatalis/Libertatis file formats
+          &mdash; A C# library to read and write various Arx Fatalis file formats
         </li>
         <li>
           <a href="https://github.com/fredlllll/ArxLibertatisLightingCalculator" target="_blank"
             >ArxLibertatisLightingCalculator</a
           >
-          &mdash; Program to recalculate lighting data for Arx Fatalis/Libertatis levels using different algorithms
+          &mdash; A program to recalculate lighting data for Arx Fatalis/Libertatis levels using different algorithms
         </li>
         <li>
           <a href="https://github.com/arx-tools/node-pkware" target="_blank">node-pkware</a>
@@ -68,9 +65,14 @@
         </li>
         <li>
           <a href="https://github.com/arx-tools/arx-header-size" target="_blank">arx-header-size</a>
-          &mdash; reads the header size of custom Arx Fatalis file formats that might be partially compressed
+          &mdash; A tool for determining the size of the uncompressed portion of various semi-compressed custom file
+          formats used by Arx Fatalis
         </li>
       </ul>
-    </div>
+    </main>
+
+    <footer>
+      <a href="https://github.com/arx-tools/arx-tools.github.io" target="_blank">website source</a>
+    </footer>
   </body>
 </html>
