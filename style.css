@@ -15,8 +15,6 @@ body {
 
 body {
   font-family: sans-serif;
-  background: url("/arx-bg-image.webp") no-repeat center center var(--walnut-brown);
-  background-size: cover;
   color: var(--cornsilk);
   font-size: 1.1em;
   display: flex;
@@ -38,6 +36,10 @@ header img {
 
 main {
   flex: 1;
+  background: url("/arx-bg-image.webp") no-repeat center center var(--walnut-brown);
+  background-size: cover;
+}
+main > div {
   width: 800px;
   margin: 0 auto;
 }
@@ -114,8 +116,20 @@ figure figcaption {
   content: none;
 }
 
-main > ul li {
-  margin-bottom: 12px;
+main > div > ul {
+  padding: 0;
+  margin: 40px 0;
+}
+main > div > ul li {
+  margin-bottom: 30px;
+  list-style: none;
+}
+main > div > ul li span {
+  display: block;
+}
+
+main p {
+  margin-top: -10px;
 }
 
 em > a {
@@ -160,4 +174,15 @@ em > a {
   width: 100%;
   aspect-ratio: 16/9;
   font-size: 12px;
+}
+
+.mods li[data-type]::before {
+  content: attr(data-type);
+  display: inline-block;
+  background: var(--bistre);
+  font-size: 0.75rem;
+  padding: 0 4px;
+  border-radius: 3px;
+  line-height: 20px;
+  vertical-align: top;
 }
