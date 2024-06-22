@@ -15,7 +15,8 @@ body {
 
 body {
   font-family: sans-serif;
-  background: var(--walnut-brown);
+  background: url("/arx-bg-image.webp") no-repeat center center var(--walnut-brown);
+  background-size: cover;
   color: var(--cornsilk);
   font-size: 1.1em;
   display: flex;
@@ -40,6 +41,7 @@ main {
   width: 800px;
   margin: 0 auto;
 }
+
 footer {
   background: var(--kobicha);
   padding: 10px 30px;
