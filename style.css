@@ -40,7 +40,7 @@ main {
   background-size: cover;
 }
 main > div {
-  width: 800px;
+  width: min(800px, 100%);
   margin: 0 auto;
 }
 
