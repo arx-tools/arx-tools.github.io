@@ -63,6 +63,15 @@ h2 {
   margin-bottom: 20px;
 }
 
+h3 {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+h3 + .mods {
+  margin-top: 20px;
+}
+
 a {
   text-decoration: none;
   font-weight: bold;
