@@ -22,7 +22,8 @@ body {
 }
 
 header {
-  background: var(--kobicha);
+  background: url("/arx-bg-pattern.webp") repeat-x center center var(--kobicha);
+  background-size: cover;
   padding: 10px 30px;
   border-bottom: 1px solid var(--cornsilk);
 }
@@ -34,6 +35,12 @@ header img {
   margin-top: 29px;
 }
 
+@media (max-width: 725px) {
+  header img {
+    display: none;
+  }
+}
+
 main {
   flex: 1;
   background: url("/arx-bg-image.webp") no-repeat center center var(--walnut-brown);
@@ -42,13 +49,17 @@ main {
 main > div {
   width: min(800px, 100%);
   margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 footer {
-  background: var(--kobicha);
+  background: url("/arx-bg-pattern.webp") repeat-x center center var(--kobicha);
+  background-size: cover;
   padding: 10px 30px;
   border-top: 1px solid var(--cornsilk);
   font-size: 0.8rem;
+  text-align: center;
 }
 
 h1,
