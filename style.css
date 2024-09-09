@@ -1,9 +1,9 @@
 :root {
-  --bistre: #382210;
-  --smoky-black: #0f0704;
-  --walnut-brown: #6b6454;
-  --kobicha: #613e22;
-  --cornsilk: #fcf0cf;
+  --bistre: hsl(27, 56%, 15%); /* #382210 */
+  --smoky-black: hsl(16, 58%, 4%); /* #0f0704 */
+  --walnut-brown: hsl(42, 12%, 37%); /* #6b6454 */
+  --kobicha: hsl(27, 48%, 26%); /* #613e22 */
+  --cornsilk: hsl(44, 88%, 90%); /* #fcf0cf */
 }
 
 html,
@@ -205,4 +205,20 @@ em > a {
   border-radius: 3px;
   line-height: 20px;
   vertical-align: top;
+}
+
+.mods li[data-type="vanilla fix"]::before {
+  background: hsl(270, 56%, 30%); // purple
+}
+
+.mods li[data-type="challenge"]::before {
+  background: hsl(25, 56%, 30%); // orange
+}
+
+.mods li[data-type="meme"]::before {
+  background: hsl(200, 56%, 30%); // turquoise
+}
+
+.mods li[data-type="other"]::before {
+  background: hsl(95, 56%, 30%); // green
 }
