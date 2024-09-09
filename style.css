@@ -196,6 +196,10 @@ em > a {
   font-size: 12px;
 }
 
+abbr {
+  cursor: help;
+}
+
 .mods li[data-type]::before {
   content: attr(data-type);
   display: inline-block;
