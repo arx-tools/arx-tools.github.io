@@ -5846,7 +5846,7 @@
     zip.file("graph/levels/level1/level1.dlf", rawDlf);
     zip.file("graph/levels/level1/level1.llf", rawLlf);
     const content = await zip.generateAsync({ type: "blob" });
-    downloadBinaryAs(`map-${now}.zip`, content, "application/zip" /* ZIP */);
+    downloadBinaryAs(`arx-fatalis-generated-map`, content, "application/zip" /* ZIP */);
   });
 })();
 /*! Bundled license information:
