@@ -2,24 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Arx editor in browser</title>
+    <title>Arx Fatalis Browser Editor</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button id="download">download demo level</button>
-    <!--
-    <section>
-      <label for="browse-fts">Browse an FTS file:</label><br />
-      <input type="file" id="browse-fts" accept=".fts" /><br />
+    <h1>Arx Fatalis Editor</h1>
 
-      <br />
-      <button type="button" id="go" disabled>Parse mapdata</button>
+    <section style="position: relative; width: 800px; height: 500px">
+      <canvas id="canvas" width="800" height="500"></canvas>
     </section>
 
-    <hr />
+    <label>
+      <input type="checkbox" checked id="show-grid" />
+      Show Grid
+    </label>
+    <br />
+    <label>
+      <input type="checkbox" checked id="show-player" />
+      Show Player
+    </label>
 
-    <pre id="debug"></pre>
-    -->
+    <br />
+    <br />
+    <br />
+
+    <button id="download">Generate and Download level</button>
 
     <script src="bundle.js"></script>
+
+    <footer><a href="https://github.com/arx-tools/editor" target="_blank">source code</a></footer>
   </body>
 </html>
