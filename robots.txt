@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://arx-tools.github.io/sitemap.xml
