@@ -174,29 +174,57 @@ h3 + .gallery {
   list-style: none;
   margin: 0 0 10px 0;
   padding: 0;
-}
-.gallery a {
-  display: block;
+  position: relative;
+
   padding: 2px;
+  color: var(--smoky-black);
   background: var(--cornsilk);
   box-sizing: border-box;
   border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
 }
-.gallery a:hover {
+
+.gallery ul li:hover {
   background: var(--kobicha);
   color: var(--cornsilk);
-  text-decoration: none;
 }
-.gallery span {
-  text-align: center;
-  display: block;
-  font-weight: normal;
+
+.gallery ul li:hover img {
+  filter: blur(1px);
 }
-.gallery img {
-  display: block;
+
+.gallery .hovericons {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  aspect-ratio: 16/9;
-  font-size: 12px;
+  height: 100%;
+}
+
+.gallery ul li:hover .hovericons {
+  display: flex;
+}
+
+.gallery .hovericons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  text-decoration: none;
+
+  font-size: 2em;
+  color: var(--cornsilk);
+  text-shadow: 0 0 5px var(--kobicha);
+  transition: color 0.1s ease-in-out, text-shadow 0.1s ease-in-out;
+}
+
+.gallery .hovericons a:hover {
+  color: var(--smoky-black);
+  text-shadow: 0 0 5px var(--cornsilk);
 }
 
 abbr {
