@@ -7,7 +7,7 @@ const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
 
 // Cached production assets
-const templateHtml = isProduction ? await fs.readFile('./dist/client/index.html', 'utf-8') : ''
+const templateHtml = isProduction ? await fs.readFile('./dist/client/template.html', 'utf-8') : ''
 
 // Create http server
 const app = express()
@@ -37,8 +37,10 @@ app.use('*all', async (req, res) => {
 
     /** @type {string} */
     let template
+
     /** @type {import('./src/entry-server.ts').render} */
     let render
+
     if (!isProduction) {
       // Always read fresh template in development
       template = await fs.readFile('./index.html', 'utf-8')
@@ -51,9 +53,7 @@ app.use('*all', async (req, res) => {
 
     const rendered = await render(url)
 
-    const html = template
-      .replace(`<!--app-head-->`, rendered.head ?? '')
-      .replace(`<!--app-html-->`, rendered.html ?? '')
+    const html = template.replace(`<!-- head -->`, rendered.head ?? '').replace(`<!-- body -->`, rendered.html ?? '')
 
     res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
   } catch (e) {

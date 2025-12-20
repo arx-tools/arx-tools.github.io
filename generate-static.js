@@ -28,7 +28,7 @@ async function generatePage(route) {
   }
 
   // Inject head and body content properly
-  const outputHtml = template.replace('<!--app-head-->', html.head ?? '').replace('<!--app-html-->', html.html ?? '')
+  const outputHtml = template.replace('<!-- head -->', html.head ?? '').replace('<!-- body -->', html.html ?? '')
 
   // Ensure directory exists before writing file
   const outputDir = path.join(`${distPath}/client`, path.dirname(cleanRoute))

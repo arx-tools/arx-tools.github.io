@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { hydrateRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import { App } from './App'
-import './styles.css'
 
 const root = document.getElementById('root')
 if (root === null) {
@@ -11,6 +11,8 @@ if (root === null) {
 hydrateRoot(
   root,
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )
