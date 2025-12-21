@@ -1,7 +1,17 @@
 import type { FC } from 'react'
+import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
+import { CompatibleWithModManager } from '../../components/CompatibleWithModManager/CompatibleWithModManager'
 
 type POCsProps = {}
 
 export const POCs: FC<POCsProps> = () => {
-  return <h1>POCs</h1>
+  return (
+    <>
+      <h2>Proof of concept / Work in progress content</h2>
+      <BackToHomepage />
+      <CompatibleWithModManager />
+
+      <CompatibleWithModManager />
+    </>
+  )
 }

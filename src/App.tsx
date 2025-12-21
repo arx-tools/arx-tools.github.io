@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 import { Route, Routes } from 'react-router'
+import { Footer } from './components/Footer/Footer'
+import { Header } from './components/Header/Header'
 import { Docs } from './pages/docs/Docs'
 import { Home } from './pages/home/Home'
 import { Maps } from './pages/maps/Maps'
@@ -12,13 +14,21 @@ type AppProps = {}
 
 export const App: FC<AppProps> = () => {
   return (
-    <Routes>
-      <Route path="/docs" Component={Docs} />
-      <Route path="/" Component={Home} />
-      <Route path="/maps" Component={Maps} />
-      <Route path="/mods" Component={Mods} />
-      <Route path="/pocs" Component={POCs} />
-      <Route path="/tools" Component={Tools} />
-    </Routes>
+    <>
+      <Header />
+      <main>
+        <div>
+          <Routes>
+            <Route path="/docs" Component={Docs} />
+            <Route path="/" Component={Home} />
+            <Route path="/maps" Component={Maps} />
+            <Route path="/mods" Component={Mods} />
+            <Route path="/pocs" Component={POCs} />
+            <Route path="/tools" Component={Tools} />
+          </Routes>
+        </div>
+      </main>
+      <Footer />
+    </>
   )
 }
