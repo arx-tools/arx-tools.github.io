@@ -22,26 +22,6 @@ body {
   flex-direction: column;
 }
 
-header {
-  background: url('/arx-bg-pattern.webp') repeat-x center center var(--kobicha);
-  background-size: cover;
-  padding: 10px 30px;
-  border-bottom: 1px solid var(--cornsilk);
-}
-
-header img {
-  float: right;
-  width: auto;
-  height: 48px;
-  margin-top: 29px;
-}
-
-@media (max-width: 725px) {
-  header img {
-    display: none;
-  }
-}
-
 main {
   flex: 1;
   background: url('/arx-bg-image.webp') no-repeat center center var(--walnut-brown);
@@ -52,15 +32,6 @@ main > div {
   margin: 0 auto;
   padding: 0 10px;
   box-sizing: border-box;
-}
-
-footer {
-  background: url('/arx-bg-pattern.webp') repeat-x center center var(--kobicha);
-  background-size: cover;
-  padding: 10px 30px;
-  border-top: 1px solid var(--cornsilk);
-  font-size: 0.8rem;
-  text-align: center;
 }
 
 h1,

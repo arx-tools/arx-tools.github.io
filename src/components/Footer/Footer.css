@@ -1,0 +1,8 @@
+footer {
+  background: url('/arx-bg-pattern.webp') repeat-x center center var(--kobicha);
+  background-size: cover;
+  padding: 10px 30px;
+  border-top: 1px solid var(--cornsilk);
+  font-size: 0.8rem;
+  text-align: center;
+}
