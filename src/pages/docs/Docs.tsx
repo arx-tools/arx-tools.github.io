@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { Link } from 'react-router'
 import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
 import { Footer } from '../../components/Footer/Footer'
 import { Header } from '../../components/Header/Header'
@@ -14,16 +15,21 @@ export const Docs: FC<DocsProps> = () => {
         title="Custom Maps"
         description="A list of Arx Fatalis related documents that are worth checking out either if you are a modder or you want to hack the game"
       />
-      <Header />
+      <Header
+        breadcrumbs={[
+          { link: '/', label: 'Home' },
+          { link: '/docs', label: 'Docs' },
+        ]}
+      />
       <main>
         <div>
           <h2>Docs</h2>
           <BackToHomepage />
           <ul>
             <li>
-              <a href="https://github.com/arx-tools/asl-cookbook" target="_blank">
+              <Link to="https://github.com/arx-tools/asl-cookbook" target="_blank">
                 <abbr title="Arx Scrtipting Language">ASL</abbr> cookbook
-              </a>
+              </Link>
               <span>Practical examples on how to do certain things with the Arx Scripting Language (ASL)</span>
             </li>
           </ul>

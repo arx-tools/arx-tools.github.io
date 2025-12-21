@@ -12,7 +12,7 @@ export const Home: FC<HomeProps> = () => {
   return (
     <>
       <SEO path="/" />
-      <Header />
+      <Header breadcrumbs={[{ link: '/', label: 'Home' }]} />
       <main>
         <div>
           <h2>Arx Fatalis goodies</h2>
