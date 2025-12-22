@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
+import { CompatibleWithModManager } from '../../components/CompatibleWithModManager/CompatibleWithModManager'
 import { Footer } from '../../components/Footer/Footer'
 import { Header } from '../../components/Header/Header'
 import { SEO } from '../../components/SEO/SEO'
@@ -20,33 +21,19 @@ export const Mods: FC<ModsProps> = () => {
         <div>
           <h2>Mods</h2>
           <BackToHomepage />
+          <CompatibleWithModManager />
 
           {/* ------------------------------ */}
 
-          <br />
-
           <p>
             <small>
               <em>
-                All mods listed on this page are compatible with
-                <a href="https://github.com/fredlllll/Arx Libertatis Mod Manager" target="_blank">
-                  Arx Libertatis Mod Manager
-                </a>
+                You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
               </em>
             </small>
           </p>
 
-          <p>
-            <small>
-              <em>
-                You can find more <b>mods</b> in the
-                <a href="/pocs/#mods">proof of concepts</a>
-                page
-              </em>
-            </small>
-          </p>
-
-          <ul className="mods">
+          <ul className="mods" style={{ margin: '4em 0' }}>
             <li data-type="vanilla fix">
               <a href="https://github.com/meszaros-lajos-gyorgy/arx-mod-golden-armor-fix" target="_blank">
                 Golden armor fix
@@ -172,26 +159,12 @@ export const Mods: FC<ModsProps> = () => {
             </li>
           </ul>
 
-          <br />
-          <br />
+          <CompatibleWithModManager />
 
           <p>
             <small>
               <em>
-                All maps and mods listed on this page are compatible with
-                <a href="https://github.com/fredlllll/Arx Libertatis Mod Manager" target="_blank">
-                  Arx Libertatis Mod Manager
-                </a>
-              </em>
-            </small>
-          </p>
-
-          <p>
-            <small>
-              <em>
-                You can find more <b>mods</b> in the
-                <a href="/pocs/#mods">proof of concepts</a>
-                page
+                You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
               </em>
             </small>
           </p>

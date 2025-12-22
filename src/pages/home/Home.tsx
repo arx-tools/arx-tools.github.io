@@ -20,23 +20,23 @@ export const Home: FC<HomeProps> = () => {
 
           <ul className="toc">
             <li>
-              <Link to="/maps/">Maps</Link>
+              <Link to="/maps">Maps</Link>
               <span>A list of custom maps available for Arx Fatalis</span>
             </li>
             <li>
-              <Link to="/mods/">Mods</Link>
+              <Link to="/mods">Mods</Link>
               <span>A list of modifications available for Arx Fatalis</span>
             </li>
             <li>
-              <Link to="/pocs/">Proof of concepts</Link>
+              <Link to="/pocs">Proof of concepts</Link>
               <span>A random list of proof of concept / work in progress content for Arx Fatalis</span>
             </li>
             <li>
-              <Link to="/tools/">Tools</Link>
+              <Link to="/tools">Tools</Link>
               <span>A list of tools for map making and modding Arx Fatalis</span>
             </li>
             <li>
-              <Link to="/docs/">Docs</Link>
+              <Link to="/docs">Docs</Link>
               <span>A list of Arx Fatalis related documents that are worth reading</span>
             </li>
           </ul>
