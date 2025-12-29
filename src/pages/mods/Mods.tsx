@@ -137,12 +137,8 @@ export const Mods: FC<ModsProps> = () => {
           <BackToHomepage />
           <CompatibleWithModManager />
 
-          <p>
-            <small>
-              <em>
-                You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
-              </em>
-            </small>
+          <p style={{ margin: '2em 0', fontSize: '0.8em', fontStyle: 'italic' }}>
+            You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
           </p>
 
           <ul className="mods" style={{ margin: '4em 0' }}>
@@ -157,17 +153,9 @@ export const Mods: FC<ModsProps> = () => {
 
           <CompatibleWithModManager />
 
-          <p>
-            <small>
-              <em>
-                You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
-              </em>
-            </small>
+          <p style={{ margin: '2em 0', fontSize: '0.8em', fontStyle: 'italic' }}>
+            You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
           </p>
-
-          <br />
-
-          {/* ------------------------------ */}
         </div>
       </main>
       <Footer />
