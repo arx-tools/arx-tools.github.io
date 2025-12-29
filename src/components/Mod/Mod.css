@@ -1,0 +1,51 @@
+h3 + .mods {
+  margin-top: 20px;
+}
+
+.mods li[data-type]::before {
+  content: attr(data-type);
+  display: inline-block;
+  background: var(--bistre);
+  font-size: 0.75rem;
+  padding: 0 4px;
+  border-radius: 3px;
+  line-height: 20px;
+  vertical-align: top;
+}
+
+.mods li[data-type='vanilla fix']::before {
+  background: hsl(270, 56%, 30%); /* purple */
+}
+
+.mods li[data-type='challenge']::before {
+  background: hsl(25, 56%, 30%); /* orange */
+}
+
+.mods li[data-type='meme']::before {
+  background: hsl(200, 56%, 30%); /* turquoise */
+}
+
+.mods li[data-type='other']::before {
+  background: hsl(95, 56%, 30%); /* green */
+}
+
+.mods li[data-before-al13-support] a::after {
+  display: inline-block;
+  background: var(--bistre);
+  color: var(--cornsilk);
+  font-size: 0.75rem;
+  padding: 0 4px;
+  border-radius: 3px;
+  line-height: 20px;
+  vertical-align: top;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.mods li[data-before-al13-support='partial'] a::after {
+  content: 'Arx Libertatis 1.3+ recommended';
+}
+
+.mods li[data-before-al13-support='no'] a::after {
+  content: 'Arx Libertatis 1.3+ required';
+}
