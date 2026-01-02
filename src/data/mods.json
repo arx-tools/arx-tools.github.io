@@ -1,0 +1,132 @@
+{
+  "vanilla fix": [
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-golden-armor-fix",
+      "title": "Golden armor fix",
+      "description": "Makes the golden armor visible in the questbook",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-potion-guard",
+      "title": "Potion guard",
+      "description": "Prevents accidental waste of potions when player health or mana is full",
+      "beforeAL13Support": "partial",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-outpost-ambience-fix",
+      "title": "Outpost ambience fix",
+      "description": "Fixes the late game \"feature\" where the ambience no longer plays at the outpost after solving the troll quest",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-faster-buttons",
+      "title": "Faster buttons",
+      "description": "Reduces wait time between button presses",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-no-spiders",
+      "title": "No Spiders",
+      "description": "Removes spiders and spider webs from the game",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-unshittify",
+      "title": "Unshittify",
+      "description": "A few small changes to texts and audio to improve the clarity of the game",
+      "isPOC": false
+    }
+  ],
+  "challenge": [
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-rune-randomizer",
+      "title": "Rune randomizer",
+      "description": "Randomizes runes",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-empty-manabar-damage",
+      "title": "Empty manabar damage",
+      "description": "Makes the player take damage when his manapool completely drains",
+      "beforeAL13Support": "no",
+      "isPOC": false
+    }
+  ],
+  "meme": [
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-giovanni-giorgio",
+      "title": "Giovanni Giorgio",
+      "description": "Makes the fisherman in the city of Arx say the famous line from Daft Punk's song 'Giorgio by Moroder'",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-snoring-menace",
+      "title": "Snoring menace",
+      "description": "Boosts all in-game snoring sounds to be more irritating",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-wednesday-my-dudes",
+      "title": "It is Wednesday, my dudes",
+      "description": "Celebrates Wednesdays by making the frogs larger and say 'It is Wednesday, my dudes'",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-buscemi-eyes",
+      "title": "Buscemi eyes",
+      "description": "Gives the super baggy eyes of Steve Buscemi to everything in-game that has eyes",
+      "isPOC": false
+    },
+    {
+      "link": "https://github.com/meszaros-lajos-gyorgy/arx-mod-fart-magic-sounds",
+      "title": "Fart magic sounds",
+      "description": "Replaces all magic related sound effects with fart sounds",
+      "isPOC": true
+    }
+  ],
+  "other": [
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-damage-displayer",
+      "title": "Damage displayer",
+      "description": "Shows the player the amount of damage he/she dealt to an enemy",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-item-respawn",
+      "title": "Item respawner",
+      "description": "Makes plants respawn in 2 minutes after picking them up or consuming them",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-pump-that-chicken",
+      "title": "Pump that chicken!",
+      "description": "Makes the 'clicking on chickens' mechanism a bit more interesting",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-restored-mouse-behavior",
+      "title": "Restored mouse behavior",
+      "description": "Restores the original funny behavior of mice that Arkane removed",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-everything-lockpickable",
+      "title": "Everything lockpickable",
+      "description": "Makes every door and lock pickable",
+      "isPOC": false
+    },
+    {
+      "link": "https: //github.com/meszaros-lajos-gyorgy/arx-mod-unlocked-sewer-hatches",
+      "title": "Unlocked sewer hatches",
+      "description": "Makes the sewer hatches in the castle openable",
+      "isPOC": false
+    },
+    {
+      "link": "https://github.com/meszaros-lajos-gyorgy/arx-poc-guns",
+      "title": "Guns",
+      "description": "A proof of concept mod/map for adding guns",
+      "isPOC": true
+    }
+  ]
+}

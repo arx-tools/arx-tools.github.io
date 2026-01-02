@@ -1,21 +1,9 @@
 import type { FC } from 'react'
 import { Link } from 'react-router'
+import type { ModData, ModType } from '../../data/mods'
 import './Mod.css'
 
-export type ModType = 'vanilla fix' | 'challenge' | 'meme' | 'other'
-
-type ModProps = {
-  type: ModType
-  link: string
-  title: string
-  description: string
-  /**
-   * whether the mod is supported in Arx Libertatis versions prior to 1.3
-   *
-   * @default "full"
-   */
-  beforeAL13Support?: 'no' | 'partial' | 'full'
-}
+type ModProps = { type: ModType } & Omit<ModData, 'isPOC'>
 
 export const Mod: FC<ModProps> = ({ type, link, title, description, beforeAL13Support = 'full' }) => {
   return (

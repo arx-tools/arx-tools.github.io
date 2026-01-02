@@ -18,11 +18,11 @@ export const Header: FC<HeaderProps> = ({ breadcrumbs }) => {
           {breadcrumbs.map(({ link, label }, index, all) => {
             const isCurrent = index === all.length - 1
             if (isCurrent) {
-              return <li>{label}</li>
+              return <li key={index}>{label}</li>
             }
 
             return (
-              <li>
+              <li key={index}>
                 <Link to={link}>{label}</Link>
               </li>
             )

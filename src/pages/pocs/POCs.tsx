@@ -5,7 +5,7 @@ import { Footer } from '../../components/Footer/Footer'
 import { GalleryItemComingSoon } from '../../components/GalleryItemComingSoon/GalleryItemComingSoon'
 import { GithubGalleryItem } from '../../components/GithubGalleryItem/GithubGalleryItem'
 import { Header } from '../../components/Header/Header'
-import { Mod } from '../../components/Mod/Mod'
+import { ModList } from '../../components/ModList/ModList'
 import { SEO } from '../../components/SEO/SEO'
 
 type POCsProps = {}
@@ -79,25 +79,7 @@ export const POCs: FC<POCsProps> = () => {
 
           <h3 id="mods">Mods</h3>
 
-          <ul className="mods">
-            <Mod
-              type="meme"
-              link="https://github.com/meszaros-lajos-gyorgy/arx-mod-fart-magic-sounds"
-              title="Fart magic sounds"
-              description="Replaces all magic related sound effects with fart sounds"
-            />
-
-            <br />
-
-            <Mod
-              type="other"
-              link="https://github.com/meszaros-lajos-gyorgy/arx-poc-guns"
-              title="Guns"
-              description="A proof of concept mod/map for adding guns"
-            />
-          </ul>
-
-          <br />
+          <ModList isPOC={true} style={{ marginBottom: '4em' }} hasGapBetweenTypes={false} />
 
           <CompatibleWithModManager />
         </div>
