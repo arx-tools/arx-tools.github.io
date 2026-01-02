@@ -3,6 +3,7 @@ import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
 import { CompatibleWithModManager } from '../../components/CompatibleWithModManager/CompatibleWithModManager'
 import { Footer } from '../../components/Footer/Footer'
 import { Header } from '../../components/Header/Header'
+import { InfoWithLink } from '../../components/InfoWithLink/InfoWithLink'
 import { Mod, ModType } from '../../components/Mod/Mod'
 import { SEO } from '../../components/SEO/SEO'
 
@@ -137,14 +138,21 @@ export const Mods: FC<ModsProps> = () => {
           <BackToHomepage />
           <CompatibleWithModManager />
 
-          <p style={{ margin: '2em 0', fontSize: '0.8em', fontStyle: 'italic' }}>
+          <InfoWithLink>
             You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
-          </p>
+          </InfoWithLink>
 
           <ul className="mods" style={{ margin: '4em 0' }}>
             {Object.entries(modsByType).map(([type, mods], index) => {
-              const modTags = mods.map(({ beforeAL13Support = 'full', ...props }) => {
-                return <Mod type={type as ModType} beforeAL13Support={beforeAL13Support} {...props} />
+              const modTags = mods.map(({ beforeAL13Support = 'full', ...props }, innerIndex) => {
+                return (
+                  <Mod
+                    type={type as ModType}
+                    beforeAL13Support={beforeAL13Support}
+                    {...props}
+                    key={`${index}--${innerIndex}`}
+                  />
+                )
               })
 
               return [modTags, ...(index > 0 ? [<br />] : [])]
@@ -153,9 +161,9 @@ export const Mods: FC<ModsProps> = () => {
 
           <CompatibleWithModManager />
 
-          <p style={{ margin: '2em 0', fontSize: '0.8em', fontStyle: 'italic' }}>
+          <InfoWithLink>
             You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
-          </p>
+          </InfoWithLink>
         </div>
       </main>
       <Footer />

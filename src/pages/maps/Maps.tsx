@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer/Footer'
 import { GalleryItemComingSoon } from '../../components/GalleryItemComingSoon/GalleryItemComingSoon'
 import { GithubGalleryItem } from '../../components/GithubGalleryItem/GithubGalleryItem'
 import { Header } from '../../components/Header/Header'
+import { InfoWithLink } from '../../components/InfoWithLink/InfoWithLink'
 import { SEO } from '../../components/SEO/SEO'
 
 type MapsProps = {}
@@ -27,13 +28,9 @@ export const Maps: FC<MapsProps> = () => {
 
           {/* --------------------- */}
 
-          <p>
-            <small>
-              <em>
-                You can find more <b>maps</b> in the <a href="/pocs/#maps">proof of concepts</a> page
-              </em>
-            </small>
-          </p>
+          <InfoWithLink>
+            You can find more <b>maps</b> in the <a href="/pocs/#maps">proof of concepts</a> page
+          </InfoWithLink>
 
           <div className="gallery">
             <ul style={{ margin: '4em 0' }}>
@@ -73,8 +70,6 @@ export const Maps: FC<MapsProps> = () => {
               ))}
             </ul>
           </div>
-
-          {/* --------------------- */}
 
           <CompatibleWithModManager />
         </div>

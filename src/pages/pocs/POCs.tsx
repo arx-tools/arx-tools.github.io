@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer/Footer'
 import { GalleryItemComingSoon } from '../../components/GalleryItemComingSoon/GalleryItemComingSoon'
 import { GithubGalleryItem } from '../../components/GithubGalleryItem/GithubGalleryItem'
 import { Header } from '../../components/Header/Header'
+import { Mod } from '../../components/Mod/Mod'
 import { SEO } from '../../components/SEO/SEO'
 
 type POCsProps = {}
@@ -28,8 +29,6 @@ export const POCs: FC<POCsProps> = () => {
           <h2>Proof of concept / Work in progress content</h2>
           <BackToHomepage />
           <CompatibleWithModManager />
-
-          {/* -------------------------------- */}
 
           <h3 id="maps">Maps</h3>
 
@@ -81,26 +80,24 @@ export const POCs: FC<POCsProps> = () => {
           <h3 id="mods">Mods</h3>
 
           <ul className="mods">
-            <li data-type="meme">
-              <a href="https://github.com/meszaros-lajos-gyorgy/arx-mod-fart-magic-sounds" target="_blank">
-                Fart magic sounds
-              </a>
-              <span>Replaces all magic related sound effects with fart sounds</span>
-            </li>
+            <Mod
+              type="meme"
+              link="https://github.com/meszaros-lajos-gyorgy/arx-mod-fart-magic-sounds"
+              title="Fart magic sounds"
+              description="Replaces all magic related sound effects with fart sounds"
+            />
 
             <br />
 
-            <li data-type="other">
-              <a href="https://github.com/meszaros-lajos-gyorgy/arx-poc-guns" target="_blank">
-                Guns
-              </a>
-              <span>A proof of concept mod/map for adding guns</span>
-            </li>
+            <Mod
+              type="other"
+              link="https://github.com/meszaros-lajos-gyorgy/arx-poc-guns"
+              title="Guns"
+              description="A proof of concept mod/map for adding guns"
+            />
           </ul>
 
           <br />
-
-          {/* -------------------------------- */}
 
           <CompatibleWithModManager />
         </div>
