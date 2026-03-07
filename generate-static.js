@@ -18,7 +18,7 @@ async function generatePage(route) {
 
   const { render } = await import('./dist/server/entry-server.js')
 
-  const html = await render(route)
+  const html = render(route)
 
   // clone the template with template.html [this file if that page not required SSG then SSR will use]
   if (route === '/') {
@@ -27,8 +27,11 @@ async function generatePage(route) {
     fs.writeFileSync(filePath, template, 'utf-8')
   }
 
+  const head = html.slice(html.indexOf('<head>') + 6, html.indexOf('</head>'))
+  const body = html.slice(head.length + '<head>'.length + '</head>'.length)
+
   // Inject head and body content properly
-  const outputHtml = template.replace('<!-- head -->', html.head ?? '').replace('<!-- body -->', html.html ?? '')
+  const outputHtml = template.replace('<!-- head -->', head).replace('<!-- body -->', body)
 
   // Ensure directory exists before writing file
   const outputDir = path.join(`${distPath}/client`, path.dirname(cleanRoute))
