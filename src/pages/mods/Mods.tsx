@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { Link } from 'react-router'
 import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
 import { CompatibleWithModManager } from '../../components/CompatibleWithModManager/CompatibleWithModManager'
 import { Footer } from '../../components/Footer/Footer'
@@ -26,14 +27,14 @@ export const Mods: FC<ModsProps> = () => {
 
           <CompatibleWithModManager />
           <InfoWithLink>
-            You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
+            You can find more <b>mods</b> in the <Link to="/pocs/#mods">proof of concepts</Link> page
           </InfoWithLink>
 
           <ModList isPOC={false} style={{ margin: '4em 0' }} hasGapBetweenTypes={true} />
 
           <CompatibleWithModManager />
           <InfoWithLink>
-            You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
+            You can find more <b>mods</b> in the <Link to="/pocs/#mods">proof of concepts</Link> page
           </InfoWithLink>
         </div>
       </main>

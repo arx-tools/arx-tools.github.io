@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { Link } from 'react-router'
 import { BackToHomepage } from '../../components/BackToHomepage/BackToHomepage'
 import { CompatibleWithModManager } from '../../components/CompatibleWithModManager/CompatibleWithModManager'
 import { Footer } from '../../components/Footer/Footer'
@@ -29,7 +30,7 @@ export const Maps: FC<MapsProps> = () => {
           {/* --------------------- */}
 
           <InfoWithLink>
-            You can find more <b>maps</b> in the <a href="/pocs/#maps">proof of concepts</a> page
+            You can find more <b>maps</b> in the <Link to="/pocs/#maps">proof of concepts</Link> page
           </InfoWithLink>
 
           <div className="gallery">
