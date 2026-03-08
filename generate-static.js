@@ -7,7 +7,8 @@ function wait(delayInMs) {
   })
 }
 
-const pagesForPreRendering = ['/']
+// see src/App.tsx for roots
+const pagesForPreRendering = ['/', '/docs', '/maps', '/mods', '/pocs', '/tools']
 
 const distPath = path.resolve('dist')
 
@@ -33,13 +34,16 @@ async function generatePage(route) {
   // Inject head and body content properly
   const outputHtml = template.replace('<!-- head -->', head).replace('<!-- body -->', body)
 
-  // Ensure directory exists before writing file
-  const outputDir = path.join(`${distPath}/client`, path.dirname(cleanRoute))
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true }) // Create parent directories if needed
+  let filePath
+  if (route === '/') {
+    filePath = path.join(`${distPath}/client`, 'index.html')
+  } else {
+    filePath = path.join(`${distPath}/client`, `${cleanRoute}/index.html`)
   }
 
-  const filePath = path.join(`${distPath}/client`, route === '/' ? 'index.html' : `${cleanRoute}.html`)
+  if (!fs.existsSync(path.dirname(filePath))) {
+    fs.mkdirSync(path.dirname(filePath), { recursive: true })
+  }
 
   fs.writeFileSync(filePath, outputHtml, 'utf-8')
   console.log(`✅ Generated: ${filePath}`)
