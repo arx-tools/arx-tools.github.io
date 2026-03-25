@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Arx / three.js POC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <canvas id="screen"></canvas>
+    <script type="importmap">
+      {
+        "imports": {
+          "node-pkware/simple": "https://esm.sh/node-pkware@5.9.1/simple",
+          "arx-header-size": "https://esm.sh/arx-header-size@3.2.1",
+          "arx-convert": "https://esm.sh/arx-convert@10.4.2"
+        }
+      }
+    </script>
+    <script type="module" src="/dist/index.js"></script>
+  </body>
+</html>
