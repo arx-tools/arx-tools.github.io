@@ -1,22 +1,35 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Arx / three.js POC</title>
+    <title>Arx Fatalis Browser Editor</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   </head>
   <body>
-    <canvas id="screen"></canvas>
+    <div style="display: flex; justify-content: space-between">
+      <h1>Arx Fatalis Browser Editor</h1>
+      <button id="download">Download</button>
+    </div>
+
+    <p id="loading-indicator">Loading, please wait...</p>
+    <canvas id="screen" style="border: 1px solid black; width: 100%; height: 600px"></canvas>
+    <p id="mouse-locked">Mouselook mode enabled, press the escape key to exit from it</p>
+    <p id="mouse-unlocked">Click the 3D scene to enable mouselook mode and to move around the world</p>
+
     <script type="importmap">
       {
         "imports": {
           "node-pkware/simple": "https://esm.sh/node-pkware@5.9.1/simple",
           "arx-header-size": "https://esm.sh/arx-header-size@3.2.1",
-          "arx-convert": "https://esm.sh/arx-convert@10.4.2"
+          "arx-convert": "https://esm.sh/arx-convert@10.4.2",
+          "arx-convert/utils": "https://esm.sh/arx-convert@10.4.2/utils",
+          "jszip": "https://esm.sh/jszip@3.10.1",
+          "three": "https://esm.sh/three@0.183.2",
+          "three/addons/controls/PointerLockControls.js": "https://esm.sh/three@0.183.2/addons/controls/PointerLockControls.js"
         }
       }
     </script>
-    <script type="module" src="/editor/dist/index.js"></script>
+    <script type="module" src="/dist/index.js"></script>
   </body>
 </html>
