@@ -39,6 +39,11 @@ export const Home: FC<HomeProps> = () => {
               <Link to="/docs">Docs</Link>
               <span>A list of Arx Fatalis related documents that are worth reading</span>
             </li>
+
+            <li>
+              <Link to="/editor">Editor</Link>
+              <span>Work in progress browser based editor for Arx Fatalis levels</span>
+            </li>
           </ul>
 
           <CompatibleWithModManager />

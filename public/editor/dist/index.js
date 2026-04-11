@@ -246,6 +246,7 @@ const near = 0.1;
 const far = 10_000;
 const camera = new PerspectiveCamera(fov, aspect, near, far);
 camera.position.set(-dlf.header.posEdit.x, -dlf.header.posEdit.y, dlf.header.posEdit.z);
+camera.rotation.y = MathUtils.degToRad(180);
 function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
     const width = canvas.clientWidth;
