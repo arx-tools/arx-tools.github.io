@@ -41,7 +41,7 @@ export const Home: FC<HomeProps> = () => {
             </li>
 
             <li>
-              <Link to="/editor">Editor</Link>
+              <a href="/editor/index.html">Editor</a>
               <span>Work in progress browser based editor for Arx Fatalis levels</span>
             </li>
           </ul>
