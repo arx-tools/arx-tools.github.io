@@ -5,35 +5,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/editor/style.css" />
   </head>
   <body>
-    <div style="display: flex; justify-content: space-between">
+    <header>
       <h1>Arx Fatalis Browser Editor</h1>
       <button id="download">Download</button>
+    </header>
+
+    <div id="screen-wrapper">
+      <div id="loading-indicator">Loading, please wait...</div>
+      <canvas id="screen"></canvas>
     </div>
 
-    <p id="loading-indicator">Loading, please wait...</p>
-    <canvas id="screen" style="border: 1px solid black; width: 100%; height: 600px"></canvas>
-    <p>WASD to move around, mouse to look around, hold shift to move slower</p>
-    <p id="mouse-locked">Mouselook mode enabled, press the escape key to exit from it</p>
-    <p id="mouse-unlocked">Click the 3D scene to enable mouselook mode and to move around the world</p>
+    <div id="info-and-controls">
+      <p>WASD to move around, mouse to look around, hold shift to move slower</p>
+      <p id="mouse-locked">Mouselook mode enabled, press the escape key to exit from it</p>
+      <p id="mouse-unlocked">Click the 3D scene to enable mouselook mode and to move around the world</p>
 
-    <label>
-      <input type="checkbox" id="camera-light-visible" />
-      Camera light visible (F key)
-    </label>
+      <label>
+        <input type="checkbox" id="camera-light-visible" />
+        Camera light visible (F key)
+      </label>
 
-    <label>
-      <input type="checkbox" id="wireframe-visible" />
-      Wireframe visible (X key)
-    </label>
+      <label>
+        <input type="checkbox" id="wireframe-visible" />
+        Wireframe visible (X key)
+      </label>
 
-    <p>
-      <small
-        >Add <code>?level=X</code> after the URL with X being a number to load a different level. Supported levels are:
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 and 23</small
-      >
-    </p>
+      <p>
+        <small
+          >Add <code>?level=X</code> after the URL with X being a number to load a different level. Supported levels
+          are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 and 23</small
+        >
+      </p>
+    </div>
 
     <script type="importmap">
       {
@@ -46,7 +52,8 @@
           "jszip": "https://esm.sh/jszip@3.10.1",
           "node-pkware/simple": "https://esm.sh/node-pkware@5.9.1/simple",
           "three": "https://esm.sh/three@0.183.2",
-          "three/addons/controls/PointerLockControls.js": "https://esm.sh/three@0.183.2/addons/controls/PointerLockControls.js"
+          "three/addons/controls/PointerLockControls.js": "https://esm.sh/three@0.183.2/addons/controls/PointerLockControls.js",
+          "three/examples/jsm/helpers/ViewHelper.js": "https://esm.sh/three@0.183.2/examples/jsm/helpers/ViewHelper.js"
         }
       }
     </script>

@@ -7,11 +7,11 @@ export const mouseUnlocked = document.querySelector('#mouse-unlocked');
 isLoading.addEventListener('change', (event) => {
     if (event.detail?.currentValue === true) {
         downloadBtn.disabled = true;
-        loadingIndicator.style.visibility = 'visible';
+        loadingIndicator.classList.remove('hidden');
     }
     else {
         downloadBtn.disabled = false;
-        loadingIndicator.style.visibility = 'hidden';
+        loadingIndicator.classList.add('hidden');
     }
 });
 export const canvas = document.querySelector('#screen');
