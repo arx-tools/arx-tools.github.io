@@ -1,17 +1,17 @@
 import { explode, implode, concatArrayBuffers, sliceArrayBufferAt } from 'node-pkware/simple';
 import { getHeaderSize } from 'arx-header-size';
 import { DLF, FTS, LLF } from 'arx-convert';
-import { ArxPolygonFlags } from 'arx-convert/types';
-import { BufferAttribute, BufferGeometry, DoubleSide, Euler, LineSegments, MathUtils, Mesh, MeshBasicMaterial, MeshLambertMaterial, PerspectiveCamera, PointLight, 
-// PointLightHelper,
-Scene, Timer, Vector3, WebGLRenderer, WireframeGeometry, } from 'three';
+import { BufferAttribute, BufferGeometry, DoubleSide, Euler, LineSegments, MathUtils, Mesh, MeshBasicMaterial, MeshLambertMaterial, PerspectiveCamera, PointLight, Raycaster, Scene, Timer, Triangle, Vector2, Vector3, WebGLRenderer, WireframeGeometry, } from 'three';
 import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 import { ViewHelper } from 'three/examples/jsm/helpers/ViewHelper.js';
 import { isQuad } from 'arx-convert/utils';
+import { MeshBVH, acceleratedRaycast } from 'three-mesh-bvh';
 import { downloadBinaryAs, zipBuffers } from './download.js';
 import { cameraLightVisible, canvas, downloadBtn, isLoading, mouseLocked, mouseUnlocked, wireframeVisible, } from './ui/ui.js';
-import { wait } from './functions.js';
+import { arxVector3toVector3, isDoubleSided, isNoDraw, isTransparent, wait } from './functions.js';
 import { Color } from './Color.js';
+import { isValidOriginalArxLevelId } from './constants.js';
+Mesh.prototype.raycast = acceleratedRaycast;
 // --------------------
 async function getFTS(level) {
     console.log(`[fts]: downloading level ${level} fts...`);
@@ -161,15 +161,8 @@ async function saveDLF(dlf, level) {
     return packedDlf;
 }
 // --------------------
-function isValidArxLevelId(level) {
-    if (Number.isNaN(level)) {
-        return false;
-    }
-    const validArxLevelIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-    return validArxLevelIds.includes(level);
-}
 const level = Number.parseInt(new URLSearchParams(globalThis.location.search).get('level') ?? '11', 10);
-if (!isValidArxLevelId(level)) {
+if (!isValidOriginalArxLevelId(level)) {
     throw new Error(`Invalid level id "${level}"`);
 }
 isLoading.currentValue = true;
@@ -196,94 +189,108 @@ downloadBtn.addEventListener('click', async () => {
 const scene = new Scene();
 const timer = new Timer();
 timer.connect(document);
-const offset = fts.sceneHeader.mScenePosition;
+const raycaster = new Raycaster();
 // --------------------
-function createMesh(material, filter = () => true) {
+function createMesh(material, offset, filter = () => true) {
     const vertices = [];
     const normals = [];
+    const uvs = [];
     fts.polygons.forEach((polygonData) => {
         if (filter(polygonData) === false) {
             return;
         }
         if (isQuad(polygonData)) {
-            const [a, b, c, d] = polygonData.vertices;
+            const [a, b, c, d] = polygonData.vertices.map(({ x, y, z }) => {
+                return new Vector3(x, y, z).sub(offset).multiply(new Vector3(-1, -1, 1));
+            });
             // prettier-ignore
-            vertices.push(-(a.x - offset.x), -(a.y - offset.y), a.z - offset.z, -(b.x - offset.x), -(b.y - offset.y), b.z - offset.z, -(c.x - offset.x), -(c.y - offset.y), c.z - offset.z, -(c.x - offset.x), -(c.y - offset.y), c.z - offset.z, -(b.x - offset.x), -(b.y - offset.y), b.z - offset.z, -(d.x - offset.x), -(d.y - offset.y), d.z - offset.z);
-            const [nA, nB, nC, nD] = polygonData.normals ?? [
-                polygonData.norm,
-                polygonData.norm,
-                polygonData.norm,
-                polygonData.norm2,
-            ];
+            vertices.push(...a.toArray(), ...b.toArray(), ...c.toArray(), ...c.toArray(), ...b.toArray(), ...d.toArray());
+            const [nA, nB, nC, nD] = (polygonData.normals ?? [polygonData.norm, polygonData.norm, polygonData.norm, polygonData.norm2]).map(({ x, y, z }) => {
+                return new Vector3(x, y, z).multiply(new Vector3(-1, -1, 1));
+            });
             // prettier-ignore
-            normals.push(-nA.x, -nA.y, nA.z, -nB.x, -nB.y, nB.z, -nC.x, -nC.y, nC.z, -nC.x, -nC.y, nC.z, -nB.x, -nB.y, nB.z, -nD.x, -nD.y, nD.z);
+            normals.push(...nA.toArray(), ...nB.toArray(), ...nC.toArray(), ...nC.toArray(), ...nB.toArray(), ...nD.toArray());
+            const [uvA, uvB, uvC, uvD] = polygonData.vertices.map(({ u, v }) => {
+                return new Vector2(u, v);
+            });
+            // prettier-ignore
+            uvs.push(...uvA.toArray(), ...uvB.toArray(), ...uvC.toArray(), ...uvC.toArray(), ...uvB.toArray(), ...uvD.toArray());
         }
         else {
-            const [a, b, c] = polygonData.vertices;
+            const [a, b, c] = polygonData.vertices.map(({ x, y, z }) => {
+                return new Vector3(x, y, z).sub(offset).multiply(new Vector3(-1, -1, 1));
+            });
             // prettier-ignore
-            vertices.push(-(a.x - offset.x), -(a.y - offset.y), a.z - offset.z, -(b.x - offset.x), -(b.y - offset.y), b.z - offset.z, -(c.x - offset.x), -(c.y - offset.y), c.z - offset.z);
+            vertices.push(...a.toArray(), ...b.toArray(), ...c.toArray());
+            const [nA, nB, nC] = (polygonData.normals ?? [polygonData.norm, polygonData.norm, polygonData.norm]).map(({ x, y, z }) => {
+                return new Vector3(x, y, z).multiply(new Vector3(-1, -1, 1));
+            });
             // prettier-ignore
-            const [nA, nB, nC] = polygonData.normals ?? [
-                polygonData.norm,
-                polygonData.norm,
-                polygonData.norm,
-            ];
+            normals.push(...nA.toArray(), ...nB.toArray(), ...nC.toArray());
+            const [uvA, uvB, uvC] = polygonData.vertices.map(({ u, v }) => {
+                return new Vector2(u, v);
+            });
             // prettier-ignore
-            normals.push(-nA.x, -nA.y, nA.z, -nB.x, -nB.y, nB.z, -nC.x, -nC.y, nC.z);
+            uvs.push(...uvA.toArray(), ...uvB.toArray(), ...uvC.toArray());
         }
     });
     const geometry = new BufferGeometry();
     geometry.setAttribute('position', new BufferAttribute(new Float32Array(vertices), 3));
     geometry.setAttribute('normal', new BufferAttribute(new Float32Array(normals), 3));
+    geometry.setAttribute('uv', new BufferAttribute(new Float32Array(uvs), 2));
+    geometry.boundsTree = new MeshBVH(geometry);
     return new Mesh(geometry, material);
 }
 // --------------------
-function isTransparent(flags) {
-    return (flags & ArxPolygonFlags.Transparent) > 0;
-}
-function isDoubleSided(flags) {
-    return (flags & ArxPolygonFlags.DoubleSided) > 0;
-}
-function isNoDraw(flags) {
-    return (flags & ArxPolygonFlags.NoDraw) > 0;
-}
+const offset = arxVector3toVector3(fts.sceneHeader.mScenePosition);
+const meshes = [];
 const solidSingleSidedMaterial = new MeshLambertMaterial({ color: Color.white.getHex() });
-const solidSingleSidedMesh = createMesh(solidSingleSidedMaterial, ({ flags }) => {
+const solidSingleSidedMesh = createMesh(solidSingleSidedMaterial, offset, ({ flags }) => {
     return !isTransparent(flags) && !isDoubleSided(flags) && !isNoDraw(flags);
 });
-scene.add(solidSingleSidedMesh);
-const solidDoubleSidedMaterial = new MeshLambertMaterial({ color: Color.white.getHex(), side: DoubleSide });
-const solidDoubleSidedMesh = createMesh(solidDoubleSidedMaterial, ({ flags }) => {
+meshes.push(solidSingleSidedMesh);
+const solidDoubleSidedMaterial = new MeshLambertMaterial({ color: Color.red.lighten(75).getHex(), side: DoubleSide });
+const solidDoubleSidedMesh = createMesh(solidDoubleSidedMaterial, offset, ({ flags }) => {
     return !isTransparent(flags) && isDoubleSided(flags) && !isNoDraw(flags);
 });
-scene.add(solidDoubleSidedMesh);
+meshes.push(solidDoubleSidedMesh);
 const transparentMaterial = new MeshLambertMaterial({
-    color: Color.white.getHex(),
+    color: Color.green.lighten(75).getHex(),
     transparent: true,
     opacity: 0.5,
     side: DoubleSide,
 });
-const transparentMesh = createMesh(transparentMaterial, ({ flags }) => {
+const transparentMesh = createMesh(transparentMaterial, offset, ({ flags }) => {
     return isTransparent(flags) && !isNoDraw(flags);
 });
-scene.add(transparentMesh);
+meshes.push(transparentMesh);
 // TODO: add noDraw polygons
 // --------------------
-// TODO: wireframe for the other polygons? (transparent, doublesided, etc...)
-const wireframe = new WireframeGeometry(solidSingleSidedMesh.geometry);
-const line = new LineSegments(wireframe, new MeshBasicMaterial({ color: Color.white.darken(50).getHex() }));
+scene.add(...meshes);
+const wireframeLines = meshes.map((mesh) => {
+    return new LineSegments(new WireframeGeometry(mesh.geometry), new MeshBasicMaterial({
+        color: Color.white.darken(50).getHex(),
+    }));
+});
 wireframeVisible.addEventListener('change', (event) => {
     if (event.detail?.currentValue === true) {
-        scene.add(line);
+        scene.add(...wireframeLines);
     }
     else {
-        scene.remove(line);
+        scene.remove(...wireframeLines);
     }
 });
 if (wireframeVisible.currentValue === true) {
-    scene.add(line);
+    scene.add(...wireframeLines);
 }
 // --------------------
+for (const light of llf.lights) {
+    const color = Color.fromArxColor(light.color);
+    const colorIntensityMultiplier = 2000;
+    const pointLight = new PointLight(color.getHex(), light.intensity * colorIntensityMultiplier, light.fallStart * colorIntensityMultiplier);
+    pointLight.position.set(-light.pos.x, -light.pos.y, light.pos.z);
+    scene.add(pointLight);
+}
 const cameraLight = new PointLight(Color.white.getHex(), 10_000);
 cameraLightVisible.addEventListener('change', (event) => {
     if (event.detail?.currentValue === true) {
@@ -397,18 +404,42 @@ canvas.addEventListener('click', () => {
 window.addEventListener('blur', () => {
     controls.unlock();
 });
-// ------------------
-for (const light of llf.lights) {
-    const color = Color.fromArxColor(light.color);
-    const colorIntensityMultiplier = 2000;
-    const pointLight = new PointLight(color.getHex(), light.intensity * colorIntensityMultiplier, light.fallStart * colorIntensityMultiplier);
-    pointLight.position.set(-light.pos.x, -light.pos.y, light.pos.z);
-    scene.add(pointLight);
-    // const helper = new PointLightHelper(pointLight, 10)
-    // scene.add(helper)
+// --------------
+// TODO: store selected triangle / allow adding with left click and removing with right click
+function renderTriangle(triangle) {
+    const geometry = new BufferGeometry();
+    // prettier-ignore
+    const vertices = new Float32Array([
+        ...triangle.a.toArray(),
+        ...triangle.b.toArray(),
+        ...triangle.c.toArray()
+    ]);
+    geometry.setAttribute('position', new BufferAttribute(vertices, 3));
+    return new WireframeGeometry(geometry);
 }
-// TODO: make lights toggleable
+const cursorTriangleMesh = new LineSegments(renderTriangle(new Triangle()), new MeshBasicMaterial({ color: Color.red.getHex() }));
+scene.add(cursorTriangleMesh);
+controls.addEventListener('change', () => {
+    const lookingAt = new Vector3();
+    controls.getDirection(lookingAt);
+    raycaster.set(camera.position, lookingAt);
+    const intersects = raycaster.intersectObjects(meshes, false);
+    const intersectedMeshes = intersects.filter(({ object }) => object instanceof Mesh);
+    if (intersectedMeshes.length === 0) {
+        scene.remove(cursorTriangleMesh);
+        return;
+    }
+    const point = intersectedMeshes[0].object.geometry.getAttribute('position');
+    const face = intersectedMeshes[0].face;
+    const a = new Vector3(point.getX(face.a), point.getY(face.a), point.getZ(face.a));
+    const b = new Vector3(point.getX(face.b), point.getY(face.b), point.getZ(face.b));
+    const c = new Vector3(point.getX(face.c), point.getY(face.c), point.getZ(face.c));
+    cursorTriangleMesh.geometry = renderTriangle(new Triangle(a, b, c));
+    scene.add(cursorTriangleMesh);
+});
+// ------------------
 // TODO: when saving FTS data use the three.js mesh instead of the loaded FTS data
 // TODO: add seedrandom package to the project + migrate "random" functions from arx-level-generator
 // TODO: make header show something more useful then a large text of "Arx Fatalis Browser Editor"
+// TODO: add crosshair
 //# sourceMappingURL=index.js.map
