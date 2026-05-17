@@ -29,19 +29,19 @@
       ]
     },
     "rotation": {
-      "description": "Euler angles in radians",
+      "description": "Euler angles in degrees",
       "type": "object",
       "properties": {
         "a": {
-          "description": "Euler angle defined in radian",
+          "description": "Euler angle defined in degrees",
           "type": "number"
         },
         "b": {
-          "description": "Euler angle defined in radian",
+          "description": "Euler angle defined in degrees",
           "type": "number"
         },
         "g": {
-          "description": "Euler angle defined in radian",
+          "description": "Euler angle defined in degrees",
           "type": "number"
         }
       },
@@ -50,6 +50,16 @@
         "b",
         "g"
       ]
+    },
+    "uint8": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255
+    },
+    "uint32": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
     },
     "color": {
       "type": "object",
@@ -91,33 +101,36 @@
           "description": "Unix timestamp in seconds",
           "$ref": "#/$defs/positiveInt32"
         },
-        "posEdit": {
-          "$ref": "#/$defs/vector3"
-        },
-        "angleEdit": {
-          "$ref": "#/$defs/rotation"
+        "player": {
+          "type": "object",
+          "properties": {
+            "position": {
+              "description": "Position of the player where it gets teleported to upon entering the level when no entity is specified as teleport target",
+              "$ref": "#/$defs/vector3"
+            },
+            "orientation": {
+              "description": "The orientation of the player upon entering a level, specified in degrees. Only \"b\" is used which turns the player around its Y axis as all other rotations on other axis gets reset by the player animations.",
+              "$ref": "#/$defs/rotation"
+            }
+          },
+          "required": [
+            "position",
+            "orientation"
+          ]
         },
         "numberOfPolygonsInFTS": {
           "$ref": "#/$defs/positiveInt32"
-        }
-      },
-      "required": [
-        "lastModifiedBy",
-        "lastModifiedAt",
-        "posEdit",
-        "angleEdit",
-        "numberOfPolygonsInFTS"
-      ]
-    },
-    "scene": {
-      "type": "object",
-      "properties": {
+        },
         "levelIdx": {
           "type": "integer",
           "minimum": 0
         }
       },
       "required": [
+        "lastModifiedBy",
+        "lastModifiedAt",
+        "player",
+        "numberOfPolygonsInFTS",
         "levelIdx"
       ]
     },
@@ -130,10 +143,10 @@
             "type": "string",
             "maxLength": 512
           },
-          "pos": {
+          "position": {
             "$ref": "#/$defs/vector3"
           },
-          "angle": {
+          "orientation": {
             "$ref": "#/$defs/rotation"
           },
           "identifier": {
@@ -145,8 +158,8 @@
         },
         "required": [
           "name",
-          "pos",
-          "angle",
+          "position",
+          "orientation",
           "identifier"
         ]
       }
@@ -156,7 +169,7 @@
       "items": {
         "type": "object",
         "properties": {
-          "pos": {
+          "position": {
             "$ref": "#/$defs/vector3"
           },
           "color": {
@@ -207,7 +220,7 @@
               "z"
             ]
           },
-          "angle": {
+          "orientation": {
             "$ref": "#/$defs/rotation"
           },
           "speed": {
@@ -231,13 +244,13 @@
           }
         },
         "required": [
-          "pos",
+          "position",
           "color",
           "size",
           "special",
           "scale",
           "move",
-          "angle",
+          "orientation",
           "speed",
           "rotateSpeed",
           "toLive",
@@ -259,7 +272,7 @@
             "items": {
               "type": "object",
               "properties": {
-                "pos": {
+                "position": {
                   "$ref": "#/$defs/vector3"
                 },
                 "type": {
@@ -283,7 +296,7 @@
                 }
               },
               "required": [
-                "pos",
+                "position",
                 "type",
                 "time"
               ]
@@ -346,7 +359,7 @@
             "items": {
               "type": "object",
               "properties": {
-                "pos": {
+                "position": {
                   "$ref": "#/$defs/vector3"
                 },
                 "type": {
@@ -370,7 +383,7 @@
                 }
               },
               "required": [
-                "pos",
+                "position",
                 "type",
                 "time"
               ]
@@ -387,7 +400,6 @@
   },
   "required": [
     "header",
-    "scene",
     "interactiveObjects",
     "fogs",
     "paths",
