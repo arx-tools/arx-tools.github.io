@@ -484,23 +484,25 @@ document.addEventListener('mouseup', (event) => {
         return areFaceOfMeshesEqual(faceOfMesh, faceBeingLookedAt);
     });
     const alreadySelected = positionInSelection !== -1;
-    if (alreadySelected) {
-        cursorTriangleMaterial.color.set(Color.red.getHex());
-    }
-    else {
-        cursorTriangleMaterial.color.set(Color.green.getHex());
-    }
     if (isAddingToSelection === undefined) {
         if (alreadySelected) {
+            cursorTriangleMaterial.color.set(Color.green.getHex());
             selectedFaces.splice(positionInSelection, 1);
         }
         else {
             selectedFaces.push(faceBeingLookedAt);
+            cursorTriangleMaterial.color.set(Color.red.getHex());
         }
         updateHighlightOfSelectedFaces();
     }
     else {
         isAddingToSelection = undefined;
+        if (alreadySelected) {
+            cursorTriangleMaterial.color.set(Color.red.getHex());
+        }
+        else {
+            cursorTriangleMaterial.color.set(Color.green.getHex());
+        }
     }
 }, false);
 canvas.addEventListener('click', (e) => {
