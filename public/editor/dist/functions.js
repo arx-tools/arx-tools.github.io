@@ -1,5 +1,4 @@
 import { ArxPolygonFlags } from 'arx-convert/types';
-import { Vector3 } from 'three';
 export async function wait(delayInMs) {
     await new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -13,9 +12,6 @@ export function randomIntBetween(a, b) {
 export function percentOf(percentage, maxValue) {
     return (maxValue / 100) * percentage;
 }
-export function arxVector3toVector3({ x, y, z }) {
-    return new Vector3(x, y, z);
-}
 export function isTransparent(flags) {
     return (flags & ArxPolygonFlags.Transparent) !== 0;
 }
@@ -24,5 +20,8 @@ export function isDoubleSided(flags) {
 }
 export function isNoDraw(flags) {
     return (flags & ArxPolygonFlags.NoDraw) !== 0;
+}
+export function areFacesEqual(a, b) {
+    return a.a === b.a && a.b === b.b && a.c === b.c && a.materialIndex === b.materialIndex && a.normal.equals(b.normal);
 }
 //# sourceMappingURL=functions.js.map

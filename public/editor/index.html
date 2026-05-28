@@ -6,31 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="/editor/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
-      <h1>Arx Fatalis Browser Editor</h1>
-      <button id="download">Download</button>
+      <h2 id="title"></h2>
+      <button id="download">
+        <i class="fa-solid fa-download"></i>
+        Download
+      </button>
     </header>
 
     <div id="screen-wrapper">
       <div id="loading-indicator">Loading, please wait...</div>
       <canvas id="screen"></canvas>
+      <div id="crosshair" class="hidden">+</div>
     </div>
 
     <div id="info-and-controls">
-      <p>WASD to move around, mouse to look around, hold shift to move slower</p>
-      <p id="mouse-locked">Mouselook mode enabled, press the escape key to exit from it</p>
-      <p id="mouse-unlocked">Click the 3D scene to enable mouselook mode and to move around the world</p>
+      <p id="mouse-locked">
+        Press <code>[W]</code> <code>[A]</code> <code>[S]</code> <code>[D]</code> keys to move around, move the
+        <code>[Mouse]</code> to look around, hold <code>[Shift]</code> to move slower, press <code>[ESC]</code> to get
+        mouse cursor back.
+      </p>
+      <p id="mouse-unlocked">Click anywhere on the 3D scene to enter it and be able to move around within the world!</p>
 
       <label>
         <input type="checkbox" id="camera-light-visible" />
-        Camera light visible (F key)
+        Camera light visible (<code>[F]</code> key)
       </label>
 
       <label>
         <input type="checkbox" id="wireframe-visible" />
-        Wireframe visible (X key)
+        Wireframe visible (<code>[X]</code> key)
       </label>
 
       <p>
@@ -40,14 +54,19 @@
           in Arx Fatalis.</small
         >
       </p>
+
+      <h3>Logs</h3>
+      <div id="logs"></div>
+
+      <p><small>Last deployed on 28th of May, 2026.</small></p>
     </div>
 
     <script type="importmap">
       {
         "imports": {
-          "arx-convert": "https://esm.sh/arx-convert@10.4.2",
-          "arx-convert/types": "https://esm.sh/arx-convert@10.4.2/types",
-          "arx-convert/utils": "https://esm.sh/arx-convert@10.4.2/utils",
+          "arx-convert": "https://esm.sh/arx-convert@13.0.0",
+          "arx-convert/types": "https://esm.sh/arx-convert@13.0.0/types",
+          "arx-convert/utils": "https://esm.sh/arx-convert@13.0.0/utils",
           "arx-header-size": "https://esm.sh/arx-header-size@3.2.1",
           "color-rgba": "https://esm.sh/color-rgba@3.0.0",
           "jszip": "https://esm.sh/jszip@3.10.1",
