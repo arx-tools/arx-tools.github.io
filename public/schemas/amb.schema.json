@@ -3,12 +3,8 @@
   "$id": "https://arx-tools.github.io/schemas/amb.schema.json",
   "title": "AMB",
   "description": "AMB (Ambience) format of Arx Fatalis interpreted as JSON by arx-convert",
+  "x-generatedBy": "arx-convert@14.0.1",
   "$defs": {
-    "uint32": {
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 4294967295
-    },
     "settings": {
       "type": "object",
       "properties": {
@@ -35,6 +31,11 @@
         "interval",
         "flags"
       ]
+    },
+    "uint32": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
     }
   },
   "type": "object",
