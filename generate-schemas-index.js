@@ -34,11 +34,15 @@ async function readSchema(filename) {
   }
 }
 
+// the whole card is the link, so the file opens from wherever it is clicked, in a new tab -
+// the listing stays at hand while the schema is read
 function renderSchema(schema) {
   return `        <li>
-          <a href="./${escapeHtml(schema.filename)}">${escapeHtml(schema.title)}</a>
-          <span>${escapeHtml(schema.description)}</span>
-          <span class="meta">${escapeHtml(schema.filename)} &middot; ${escapeHtml(schema.generatedBy)}</span>
+          <a href="./${escapeHtml(schema.filename)}" target="_blank">
+            <span class="name">${escapeHtml(schema.title)}<span class="open" aria-hidden="true">&nearr;</span></span>
+            <span>${escapeHtml(schema.description)}</span>
+            <span class="meta">${escapeHtml(schema.filename)} &middot; ${escapeHtml(schema.generatedBy)}</span>
+          </a>
         </li>`
 }
 
@@ -156,25 +160,43 @@ function renderPage(schemas) {
       .schemas li {
         list-style: none;
         margin-bottom: 10px;
+      }
+      .schemas li a {
+        display: block;
         padding: 10px 15px;
         border-radius: 2px;
         background: var(--cornsilk);
         color: var(--smoky-black);
+        font-weight: normal;
       }
-      .schemas li:hover {
+      .schemas li a:hover {
         background: var(--kobicha);
         color: var(--cornsilk);
+        text-decoration: none;
       }
-      .schemas li a {
-        font-size: 1.2em;
-        color: var(--smoky-black);
+      .schemas li a:focus-visible {
+        outline: 2px solid var(--cornsilk);
+        outline-offset: 2px;
       }
-      .schemas li:hover a {
-        color: var(--cornsilk);
+      .schemas li a:hover .name {
+        text-decoration: underline;
       }
       .schemas li span {
         display: block;
         margin-top: 5px;
+      }
+      .schemas li span:first-child {
+        margin-top: 0;
+      }
+      .name {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+      .name .open {
+        display: inline;
+        margin-left: 6px;
+        font-size: 0.85em;
+        opacity: 0.7;
       }
       .meta {
         font-size: 0.8rem;
@@ -239,7 +261,8 @@ function renderPage(schemas) {
           This folder is the copy which the <code>$schema</code> key of the generated JSON resolves to. The files are
           written by <code>npm run schemas:build</code> of arx-convert and refreshed here after a release which changed
           one; the <code>x-generatedBy</code> of a file tells which release it came from. This listing is generated at
-          build time from the folder, so it can not go stale.
+          build time from the folder, so it can not go stale. An entry opens the schema in a new tab, so the list stays
+          at hand while it is read.
         </p>
 
         <ul class="schemas">
