@@ -1,0 +1,79 @@
+[
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-lalees-minigame",
+    "version": "2.1.1",
+    "mapName": "LaLee's minigame",
+    "isPOC": false
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-ambience-gallery",
+    "version": "1.0.1",
+    "mapName": "Ambience gallery",
+    "isPOC": false
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-basketball-course",
+    "version": "1.0.0",
+    "mapName": "Basketball course",
+    "isPOC": false
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-item-gallery",
+    "version": "1.0.0",
+    "mapName": "Item gallery",
+    "isPOC": false
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-restored-outpost-and-tavern",
+    "version": "1.1.1",
+    "mapName": "Restored outpost and tavern",
+    "isPOC": false
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-katamari-damacy",
+    "version": "1.4.0",
+    "mapName": "Katamari Damacy",
+    "isPOC": true
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-alias-nightmare",
+    "version": "1.1.0",
+    "mapName": "Alia's nightmare",
+    "isPOC": true
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-disco",
+    "version": "1.0.0",
+    "mapName": "Disco",
+    "isPOC": true
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-poc-surface-city",
+    "version": "1.0.0",
+    "mapName": "Surface city",
+    "isPOC": true
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-gungame-arena",
+    "version": "0.0.1",
+    "mapName": "Gungame arena",
+    "isPOC": true
+  },
+  {
+    "author": "meszaros-lajos-gyorgy",
+    "project": "arx-map-enhanced-goblin-mines",
+    "version": "1.0.0",
+    "mapName": "Enhanced goblin mines",
+    "isPOC": true
+  }
+]

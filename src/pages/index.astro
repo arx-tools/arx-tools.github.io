@@ -1,0 +1,52 @@
+---
+import CompatibleWithModManager from '../components/CompatibleWithModManager.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout path="/">
+  <Header breadcrumbs={[{ link: '/', label: 'Home' }]} />
+
+  <main>
+    <div>
+      <h2>Arx Fatalis goodies</h2>
+      <CompatibleWithModManager />
+
+      <ul class="toc">
+        <li>
+          <a href="/maps/">Maps</a>
+          <span>A list of custom maps available for Arx Fatalis</span>
+        </li>
+        <li>
+          <a href="/mods/">Mods</a>
+          <span>A list of modifications available for Arx Fatalis</span>
+        </li>
+        <li>
+          <a href="/pocs/">Proof of concepts</a>
+          <span>A random list of proof of concept / work in progress content for Arx Fatalis</span>
+        </li>
+        <li>
+          <a href="/tools/">Tools</a>
+          <span>A list of tools for map making and modding Arx Fatalis</span>
+        </li>
+        <li>
+          <a href="/docs/">Docs</a>
+          <span>A list of Arx Fatalis related documents that are worth reading</span>
+        </li>
+        <li>
+          <a href="/schemas/">JSON schemas</a>
+          <span>The schemas of the JSON which arx-convert generates from the custom formats of Arx Fatalis</span>
+        </li>
+        <li>
+          <a href="/editor/">Editor</a>
+          <span>Work in progress browser based editor for Arx Fatalis levels</span>
+        </li>
+      </ul>
+
+      <CompatibleWithModManager />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

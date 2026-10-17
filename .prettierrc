@@ -1,17 +1,17 @@
 {
-  "plugins": [
-    "@trivago/prettier-plugin-sort-imports"
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
   ],
   "arrowParens": "always",
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "importOrder": [
-    "^node:",
-    "^react$",
-    "<THIRD_PARTY_MODULES>",
-    "^[./].*(?<!.css)$",
-    "^[./]"
-  ],
+  "importOrder": ["^node:", "^astro:", "<THIRD_PARTY_MODULES>", "^[./].*(?<!.css)$", "^[./]"],
   "printWidth": 120,
   "semi": false,
   "singleQuote": true,

@@ -1,0 +1,43 @@
+---
+import { modsByType } from '../data'
+import type { ModType } from '../data'
+import Mod from './Mod.astro'
+
+interface Props {
+  isPOC: boolean
+  hasGapBetweenTypes: boolean
+  style?: string
+}
+
+const { isPOC, hasGapBetweenTypes, style } = Astro.props
+
+// the groups with at least one item of the requested kind, in the order of mods.json
+const groups = Object.entries(modsByType)
+  .map(([type, mods]) => {
+    return {
+      type: type as ModType,
+      mods: mods.filter((mod) => {
+        return mod.isPOC === isPOC
+      }),
+    }
+  })
+  .filter(({ mods }) => {
+    return mods.length > 0
+  })
+---
+
+<ul class="mods" style={style}>
+  {groups.map(({ type, mods }, index) => (
+    <>
+      {hasGapBetweenTypes && index > 0 ? (
+        <>
+          <br />
+          <br />
+        </>
+      ) : null}
+      {mods.map((mod) => (
+        <Mod type={type} mod={mod} />
+      ))}
+    </>
+  ))}
+</ul>

@@ -1,0 +1,204 @@
+:root {
+  --bistre: hsl(27, 56%, 15%); /* #382210 */
+  --smoky-black: hsl(16, 58%, 4%); /* #0f0704 */
+  --walnut-brown: hsl(42, 12%, 37%); /* #6b6454 */
+  --kobicha: hsl(27, 48%, 26%); /* #613e22 */
+  --cornsilk: hsl(44, 88%, 90%); /* #fcf0cf */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* the body is the flex container of the page: header, main and footer are its children,
+   and main grows to fill the viewport so the footer stays at the bottom */
+body {
+  height: 100%;
+  font-family: sans-serif;
+  color: var(--cornsilk);
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  background: url('/arx-bg-image.webp') no-repeat center center var(--walnut-brown);
+  background-size: cover;
+}
+main > div {
+  width: min(800px, 100%);
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: serif;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--smoky-black);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  background: lightgrey;
+  padding: 0 1px;
+  border-radius: 3px;
+}
+
+img {
+  width: 100%;
+  user-select: none;
+}
+
+figure {
+  margin: 0 0 20px 0;
+}
+
+figure figcaption {
+  text-align: center;
+  font-style: italic;
+}
+
+.breadcrumbs {
+  font-size: 0.8rem;
+  user-select: none;
+}
+.breadcrumbs ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-size: 0;
+}
+.breadcrumbs ul li {
+  list-style: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.breadcrumbs ul li::before {
+  content: '/';
+  margin: 0 5px;
+}
+.breadcrumbs ul li:first-child::before {
+  content: none;
+}
+
+main > div > ul {
+  padding: 0;
+  margin: 60px 0 40px 0;
+}
+main > div > ul li {
+  margin-bottom: 40px;
+  list-style: none;
+}
+main > div > ul li span {
+  margin-top: 5px;
+  display: block;
+}
+
+main p {
+  margin-top: -10px;
+}
+
+em > a {
+  font-weight: normal;
+}
+
+.gallery {
+  margin: 60px 0 40px 0;
+}
+
+h3 + .gallery {
+  margin-top: 20px;
+}
+
+.gallery ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.gallery ul li {
+  width: calc(100% / 3 - 10px);
+  list-style: none;
+  margin: 0 0 10px 0;
+  padding: 0;
+  position: relative;
+
+  padding: 2px;
+  color: var(--smoky-black);
+  background: var(--cornsilk);
+  box-sizing: border-box;
+  border-radius: 2px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.gallery ul li:hover {
+  background: var(--kobicha);
+  color: var(--cornsilk);
+}
+
+.gallery ul li:hover img {
+  filter: blur(1px);
+}
+
+.gallery .hovericons {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery ul li:hover .hovericons {
+  display: flex;
+}
+
+.gallery .hovericons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  text-decoration: none;
+
+  font-size: 2em;
+  color: var(--cornsilk);
+  text-shadow: 0 0 5px var(--kobicha);
+  transition:
+    color 0.1s ease-in-out,
+    text-shadow 0.1s ease-in-out;
+}
+
+.gallery .hovericons a:hover {
+  color: var(--smoky-black);
+  text-shadow: 0 0 5px var(--cornsilk);
+}
+
+abbr {
+  cursor: help;
+}

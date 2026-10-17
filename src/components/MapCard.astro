@@ -1,0 +1,29 @@
+---
+import type { MapData } from '../data'
+
+interface Props {
+  map: MapData
+}
+
+const { map } = Astro.props
+
+const { author, project, version, mapName } = map
+
+const homepageURL = `https://github.com/${author}/${project}`
+const previewImageURL = `https://raw.githubusercontent.com/${author}/${project}/refs/heads/master/preview.jpg`
+const directDownloadURL = `https://github.com/${author}/${project}/releases/download/v${version}/${project}-v${version}.zip`
+---
+
+<li>
+  <img src={previewImageURL} alt={`Preview of '${mapName}' map`} />
+  <span>{mapName}</span>
+  <div class="hovericons">
+    <a href={directDownloadURL} title={`Download latest version (v${version})`}>
+      <i class="fa-solid fa-download"></i>
+    </a>
+
+    <a href={homepageURL} title="View project on github" target="_blank">
+      <i class="fa-brands fa-github"></i>
+    </a>
+  </div>
+</li>

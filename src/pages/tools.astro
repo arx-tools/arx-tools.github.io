@@ -1,0 +1,40 @@
+---
+import BackToHomepage from '../components/BackToHomepage.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import { tools } from '../data'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout
+  path="/tools/"
+  title="Tools"
+  description="A list of command-line and gui tools for making maps and modding Arx Fatalis"
+>
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/tools/', label: 'Tools' },
+    ]}
+  />
+
+  <main>
+    <div>
+      <h2>Tools</h2>
+      <BackToHomepage />
+
+      <ul>
+        {tools.map((tool) => (
+          <li>
+            <a href={tool.url} target="_blank">
+              {tool.name}
+            </a>
+            <span>{tool.description}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

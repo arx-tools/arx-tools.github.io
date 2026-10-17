@@ -1,0 +1,39 @@
+---
+import BackToHomepage from '../components/BackToHomepage.astro'
+import CompatibleWithModManager from '../components/CompatibleWithModManager.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import InfoWithLink from '../components/InfoWithLink.astro'
+import ModList from '../components/ModList.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout path="/mods/" title="Mods" description="Find mods for Arx Fatalis">
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/mods/', label: 'Mods' },
+    ]}
+  />
+
+  <main>
+    <div>
+      <h2>Mods</h2>
+      <BackToHomepage />
+
+      <CompatibleWithModManager />
+      <InfoWithLink>
+        You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
+      </InfoWithLink>
+
+      <ModList isPOC={false} style="margin: 4em 0" hasGapBetweenTypes={true} />
+
+      <CompatibleWithModManager />
+      <InfoWithLink>
+        You can find more <b>mods</b> in the <a href="/pocs/#mods">proof of concepts</a> page
+      </InfoWithLink>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

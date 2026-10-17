@@ -1,0 +1,20 @@
+---
+import type { ModData, ModType } from '../data'
+
+interface Props {
+  type: ModType
+  mod: ModData
+}
+
+const { type, mod } = Astro.props
+
+const beforeAL13Support = mod.beforeAL13Support ?? 'full'
+---
+
+<li data-type={type} data-before-al13-support={beforeAL13Support}>
+  {' '}
+  <a href={mod.link} target="_blank">
+    {mod.title}
+  </a>
+  <span>{mod.description}</span>
+</li>

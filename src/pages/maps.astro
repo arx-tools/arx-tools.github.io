@@ -1,0 +1,54 @@
+---
+import BackToHomepage from '../components/BackToHomepage.astro'
+import ComingSoon from '../components/ComingSoon.astro'
+import CompatibleWithModManager from '../components/CompatibleWithModManager.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import InfoWithLink from '../components/InfoWithLink.astro'
+import MapCard from '../components/MapCard.astro'
+import { maps } from '../data'
+import Layout from '../layouts/Layout.astro'
+
+const releasedMaps = maps.filter((map) => {
+  return !map.isPOC
+})
+
+// the placeholders of the maps which are not published yet
+const comingSoonCount = 4
+---
+
+<Layout path="/maps/" title="Custom Maps" description="Download custom maps for Arx Fatalis">
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/maps/', label: 'Maps' },
+    ]}
+  />
+
+  <main>
+    <div>
+      <h2>Custom Maps for Arx Fatalis</h2>
+      <BackToHomepage />
+      <CompatibleWithModManager />
+
+      <InfoWithLink>
+        You can find more <b>maps</b> in the <a href="/pocs/#maps">proof of concepts</a> page
+      </InfoWithLink>
+
+      <div class="gallery">
+        <ul style="margin: 4em 0">
+          {releasedMaps.map((map) => (
+            <MapCard map={map} />
+          ))}
+          {Array.from({ length: comingSoonCount }, () => (
+            <ComingSoon />
+          ))}
+        </ul>
+      </div>
+
+      <CompatibleWithModManager />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

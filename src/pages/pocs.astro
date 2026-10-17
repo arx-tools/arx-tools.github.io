@@ -1,0 +1,60 @@
+---
+import BackToHomepage from '../components/BackToHomepage.astro'
+import ComingSoon from '../components/ComingSoon.astro'
+import CompatibleWithModManager from '../components/CompatibleWithModManager.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import MapCard from '../components/MapCard.astro'
+import ModList from '../components/ModList.astro'
+import { maps } from '../data'
+import Layout from '../layouts/Layout.astro'
+
+const pocMaps = maps.filter((map) => {
+  return map.isPOC
+})
+
+// the placeholders of the maps which are not published yet
+const comingSoonCount = 3
+---
+
+<Layout
+  path="/pocs/"
+  title="Proof of Concept / Work in progress content"
+  description="Check out proof of concept and work in progress maps and mods for Arx Fatalis"
+>
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/pocs/', label: 'Proof of concepts' },
+    ]}
+  />
+
+  <main>
+    <div>
+      <h2>Proof of concept / Work in progress content</h2>
+      <BackToHomepage />
+      <CompatibleWithModManager />
+
+      <h3 id="maps">Maps</h3>
+
+      <div class="gallery">
+        <ul>
+          {pocMaps.map((map) => (
+            <MapCard map={map} />
+          ))}
+          {Array.from({ length: comingSoonCount }, () => (
+            <ComingSoon />
+          ))}
+        </ul>
+      </div>
+
+      <h3 id="mods">Mods</h3>
+
+      <ModList isPOC={true} style="margin-bottom: 4em" hasGapBetweenTypes={false} />
+
+      <CompatibleWithModManager />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,36 @@
+---
+import BackToHomepage from '../components/BackToHomepage.astro'
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout
+  path="/docs/"
+  title="Docs"
+  description="A list of Arx Fatalis related documents that are worth checking out either if you are a modder or you want to hack the game"
+>
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/docs/', label: 'Docs' },
+    ]}
+  />
+
+  <main>
+    <div>
+      <h2>Docs</h2>
+      <BackToHomepage />
+      <ul>
+        <li>
+          <a href="https://github.com/arx-tools/asl-cookbook" target="_blank">
+            <abbr title="Arx Scrtipting Language">ASL</abbr> cookbook
+          </a>
+          <span>Practical examples on how to do certain things with the Arx Scripting Language (ASL)</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

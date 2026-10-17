@@ -1,0 +1,230 @@
+---
+import { readdir, readFile } from 'node:fs/promises'
+import path from 'node:path'
+import { z } from 'zod'
+import BackToHomepage from '../../components/BackToHomepage.astro'
+import Footer from '../../components/Footer.astro'
+import Header from '../../components/Header.astro'
+import Layout from '../../layouts/Layout.astro'
+
+// The listing of the schemas which are served from public/schemas/, generated at build time
+// from the folder itself: GitHub Pages does not list a directory, and a hand maintained list
+// would go stale with every release of arx-convert. A schema which is in the folder shows up
+// here by itself.
+//
+// The schemas are written by "npm run schemas:build" of arx-convert, and the release workflow
+// of that repository copies them here - see docs/schemas.md in arx-convert.
+
+const schemasDir = path.resolve('public/schemas')
+const schemaSuffix = '.schema.json'
+
+const schemaDocSchema = z.object({
+  title: z.string().optional(),
+  description: z.string().optional(),
+  'x-generatedBy': z.string().optional(),
+})
+
+const filenames = (await readdir(schemasDir))
+  .filter((filename) => {
+    return filename.endsWith(schemaSuffix)
+  })
+  .sort()
+
+const schemas = await Promise.all(
+  filenames.map(async (filename) => {
+    const content = await readFile(path.join(schemasDir, filename), 'utf8')
+    const doc = schemaDocSchema.parse(JSON.parse(content))
+
+    return {
+      filename,
+      title: doc.title ?? filename,
+      description: doc.description ?? '',
+      generatedBy: doc['x-generatedBy'] ?? 'unknown',
+    }
+  }),
+)
+
+const convertRepoURL = 'https://github.com/arx-tools/arx-convert'
+---
+
+<Layout
+  path="/schemas/"
+  title="JSON schemas"
+  description="The JSON schemas of the JSON that arx-convert generates from the custom formats of Arx Fatalis"
+>
+  <Header
+    breadcrumbs={[
+      { link: '/', label: 'Home' },
+      { link: '/schemas/', label: 'JSON schemas' },
+    ]}
+  />
+
+  <main class="schemas-page">
+    <div>
+      <h2>JSON schemas</h2>
+      <BackToHomepage />
+
+      <p>
+        Every custom format of Arx Fatalis which{' '}
+        <a href={convertRepoURL} target="_blank">
+          arx-convert
+        </a>{' '}
+        can read has a JSON schema: it describes the JSON that the tool generates from the binary file, so the result
+        can be validated and edited with completion in an editor. The schemas are self-contained{' '}
+        <a href="https://json-schema.org/draft/2020-12/schema" target="_blank">
+          draft 2020-12
+        </a>{' '}
+        documents - every definition they reference is included in the file - so they can be used on their own.
+      </p>
+
+      <p>
+        This folder is the copy which the <code>$schema</code> key of the generated JSON resolves to. The files are
+        written by <code>npm run schemas:build</code> of arx-convert and refreshed here by the release workflow of that
+        repository; the <code>x-generatedBy</code> of a file tells which release it came from. This listing is generated
+        at build time from the folder, so it can not go stale. An entry opens the schema in a new tab, so the list stays
+        at hand while it is read.
+      </p>
+
+      <ul class="schemas">
+        {schemas.map((schema) => (
+          <li>
+            <a href={`./${schema.filename}`} target="_blank">
+              <span class="name">
+                {schema.title}
+                <span class="open" aria-hidden="true">
+                  &nearr;
+                </span>
+              </span>
+              <span>{schema.description}</span>
+              <span class="meta">
+                {schema.filename} &middot; {schema.generatedBy}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h3>Using a schema</h3>
+
+      <p>A JSON file written by arx-convert names the URL of its schema:</p>
+
+      <pre><code>{`{
+  "$schema": "https://arx-tools.github.io/schemas/fts.schema.json",
+  "header": { ... }
+}`}</code></pre>
+
+      <p>
+        Editors which resolve <code>$schema</code> (VS Code and most of the JSON tooling) give completion and inline
+        validation for the file with that URL. The schemas can also be passed to a validator by hand, for example with{' '}
+        <a href="https://github.com/ajv-validator/ajv-cli" target="_blank">
+          ajv-cli
+        </a>{' '}
+        - the <code>--strict=false</code>
+        is needed for the <code>x-generatedBy</code> annotation the generator adds:
+      </p>
+
+      <pre><code>{`cat level8.fts.unpacked | arx-convert --from=fts --to=json > level8.json
+npx ajv-cli@5 validate --spec=draft2020 --strict=false -s fts.schema.json -d level8.json`}</code></pre>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* the page keeps the link colours it had before it became a page of the site: the body of the
+     page is on the dark background, so its links are light, while the cards are light and their
+     links are dark */
+  .schemas-page a {
+    color: var(--cornsilk);
+  }
+
+  .schemas-page > div {
+    padding-bottom: 40px;
+  }
+
+  .schemas-page .schemas {
+    margin: 30px 0;
+    padding: 0;
+  }
+
+  .schemas-page .schemas li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+
+  .schemas-page .schemas li a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 2px;
+    background: var(--cornsilk);
+    color: var(--smoky-black);
+    font-weight: normal;
+  }
+
+  .schemas-page .schemas li a:hover {
+    background: var(--kobicha);
+    color: var(--cornsilk);
+    text-decoration: none;
+  }
+
+  .schemas-page .schemas li a:focus-visible {
+    outline: 2px solid var(--cornsilk);
+    outline-offset: 2px;
+  }
+
+  .schemas-page .schemas li a:hover .name {
+    text-decoration: underline;
+  }
+
+  /* only the direct children of the link are the blocks of a card - the arrow of the name stays
+     inline next to the title */
+  .schemas-page .schemas li a > span {
+    display: block;
+    margin-top: 5px;
+  }
+
+  .schemas-page .schemas li a > span:first-child {
+    margin-top: 0;
+  }
+
+  .schemas-page .name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .schemas-page .name .open {
+    /* the global `main > div > ul li span` rule makes every span of a list a block - the arrow
+       of the title is the one which stays inline */
+    display: inline;
+    margin-left: 6px;
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+
+  .schemas-page .meta {
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  .schemas-page code {
+    background: var(--smoky-black);
+    color: var(--cornsilk);
+    padding: 0 3px;
+    border-radius: 3px;
+  }
+
+  .schemas-page pre {
+    background: var(--smoky-black);
+    border: 1px solid var(--walnut-brown);
+    border-radius: 3px;
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .schemas-page pre code {
+    background: none;
+    padding: 0;
+  }
+</style>
