@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Arx Fatalis Browser Editor</title>
     <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/editor/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/editor/style.css" />
+    <title>Arx Fatalis Browser Editor</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -13,15 +12,11 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script type="module" crossorigin src="/editor/assets/index-CnfL8epJ.js"></script>
+    <link rel="stylesheet" crossorigin href="/editor/assets/index-B8hMtqnt.css">
   </head>
   <body>
-    <header>
-      <h2 id="title"></h2>
-      <button id="download">
-        <i class="fa-solid fa-download"></i>
-        Download
-      </button>
-    </header>
+    <div id="app"></div>
 
     <div id="screen-wrapper">
       <div id="loading-indicator">Loading, please wait...</div>
@@ -58,26 +53,14 @@
       <h3>Logs</h3>
       <div id="logs"></div>
 
-      <p><small>Last deployed on 28th of May, 2026.</small></p>
+      <p>
+        <small>
+          Arx Fatalis Browser Editor <span id="build-info">v0.0.2 (local, 2026-10-17)</span>
+          &middot;
+          <a href="/">back to arx-tools.github.io</a>
+        </small>
+      </p>
     </div>
 
-    <script type="importmap">
-      {
-        "imports": {
-          "arx-convert": "https://esm.sh/arx-convert@13.0.0",
-          "arx-convert/types": "https://esm.sh/arx-convert@13.0.0/types",
-          "arx-convert/utils": "https://esm.sh/arx-convert@13.0.0/utils",
-          "arx-header-size": "https://esm.sh/arx-header-size@3.2.1",
-          "color-rgba": "https://esm.sh/color-rgba@3.0.0",
-          "jszip": "https://esm.sh/jszip@3.10.1",
-          "node-pkware/simple": "https://esm.sh/node-pkware@5.9.1/simple",
-          "three": "https://esm.sh/three@0.183.2",
-          "three/addons/controls/PointerLockControls.js": "https://esm.sh/three@0.183.2/addons/controls/PointerLockControls.js",
-          "three/examples/jsm/helpers/ViewHelper.js": "https://esm.sh/three@0.183.2/examples/jsm/helpers/ViewHelper.js",
-          "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.9.9/build/index.module.min.js"
-        }
-      }
-    </script>
-    <script type="module" src="/editor/dist/index.js"></script>
   </body>
 </html>
