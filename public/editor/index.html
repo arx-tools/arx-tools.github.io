@@ -12,8 +12,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script type="module" crossorigin src="/editor/assets/index-CnfL8epJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/editor/assets/index-B8hMtqnt.css">
+    <script type="module" crossorigin src="/editor/assets/index-BPIsqJAg.js"></script>
+    <link rel="stylesheet" crossorigin href="/editor/assets/index-mVSzUnlJ.css">
   </head>
   <body>
     <div id="app"></div>
@@ -22,6 +22,7 @@
       <div id="loading-indicator">Loading, please wait...</div>
       <canvas id="screen"></canvas>
       <div id="crosshair" class="hidden">+</div>
+      <div id="camera-info"></div>
     </div>
 
     <div id="info-and-controls">
@@ -42,6 +43,11 @@
         Wireframe visible (<code>[X]</code> key)
       </label>
 
+      <label>
+        <input type="checkbox" id="camera-info-visible" />
+        Camera position (<code>[P]</code> key)
+      </label>
+
       <p>
         <small
           >Add <code>?level=X</code> after the URL with X being a number to load a different level. Supported levels
@@ -50,12 +56,21 @@
         >
       </p>
 
+      <p>
+        <small
+          >Add <code>?positionAt=x,y,z</code> and <code>?angle=pitch,yaw,roll</code> to open a level at a given game
+          position and orientation (degrees, a positive pitch looks down; the roll is ignored). The URL follows the
+          camera, so the current view can be copied from the address bar. The three angle values match the
+          <code>rotation</code> line of the game's debug hud, so it can be copied over directly.</small
+        >
+      </p>
+
       <h3>Logs</h3>
       <div id="logs"></div>
 
       <p>
         <small>
-          Arx Fatalis Browser Editor <span id="build-info">v0.0.2 (3c890a0, 2026-10-17)</span>
+          Arx Fatalis Browser Editor <span id="build-info">v0.1.0 (d6e8720, 2026-10-17)</span>
           &middot;
           <a href="/">back to arx-tools.github.io</a>
         </small>
