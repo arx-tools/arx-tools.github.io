@@ -12,8 +12,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script type="module" crossorigin src="/editor/assets/index-v91s09pH.js"></script>
-    <link rel="stylesheet" crossorigin href="/editor/assets/index-COUtmTRx.css">
+    <script type="module" crossorigin src="/editor/assets/index-DaFiLWIg.js"></script>
+    <link rel="stylesheet" crossorigin href="/editor/assets/index-CzYrERBZ.css">
   </head>
   <body>
     <div id="app"></div>
@@ -69,14 +69,16 @@
         <select id="lighting-calculator-mode">
           <option value="Arx">Arx</option>
           <option value="Realistic">Realistic</option>
-          <option value="MaxBrightness">MaxBrightness</option>
-          <option value="CompleteDarkness">CompleteDarkness</option>
+          <!-- MaxBrightness and CompleteDarkness are implemented but hidden for now: 100% white is
+               blinding and 100% black is invisible without the wireframe. They stay reachable from
+               the URL (?lightingCalculatorMode=MaxBrightness|CompleteDarkness). -->
         </select>
-        <span class="settings-indent" title="The minimum brightness of the Realistic palette. 0 = no ambient (like Fred's tool), 23 = the ambient floor of the game's original palette.">
+        <!-- advanced settings: the values stay reachable from the URL, the UI is hidden for now -->
+        <span class="settings-indent advanced" title="The minimum brightness of the Realistic palette. 0 = no ambient (like Fred's tool), 23 = the ambient floor of the game's original palette.">
           Ambient floor:
         </span>
-        <input type="number" id="ambient-floor" min="0" max="64" step="1" style="width: 4em" />
-        <label class="settings-indent" title="Occlusion test in the Realistic bake. Off = every light reaches every vertex it faces (the game's original palette has no occlusion).">
+        <input type="number" id="ambient-floor" class="advanced" min="0" max="64" step="1" style="width: 4em" />
+        <label id="shadows-row" class="settings-indent" title="Occlusion test in the Realistic bake. Off = every light reaches every vertex it faces (the game's original palette has no occlusion).">
           <input type="checkbox" id="shadows" /> Shadows
         </label>
       </div>
@@ -95,7 +97,7 @@
 
       <p>
         <small>
-          Arx Fatalis Browser Editor <span id="build-info">v0.9.0 (2ead3c0, 2026-10-18)</span>
+          Arx Fatalis Browser Editor <span id="build-info">v0.9.1 (c262fa3, 2026-10-18)</span>
           &middot;
           <a href="/">back to arx-tools.github.io</a>
         </small>
