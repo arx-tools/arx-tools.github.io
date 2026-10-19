@@ -12,103 +12,64 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <script type="module" crossorigin src="/editor/assets/index-B6lPKSx5.js"></script>
-    <link rel="stylesheet" crossorigin href="/editor/assets/index-CP6tfhUc.css">
+    <script type="module" crossorigin src="/editor/assets/index-D-vsyzo6.js"></script>
+    <link rel="stylesheet" crossorigin href="/editor/assets/index-DccqB_X8.css">
   </head>
   <body>
     <div id="app"></div>
 
-    <div id="screen-wrapper">
+    <main>
+      <div id="screen-wrapper">
       <div id="loading-indicator">Loading, please wait...</div>
       <canvas id="screen"></canvas>
       <div id="crosshair" class="hidden">+</div>
       <div id="camera-info"></div>
     </div>
 
-    <div id="info-and-controls">
-      <p id="mouse-locked">
-        Press <code>[W]</code> <code>[A]</code> <code>[S]</code> <code>[D]</code> keys to move around, move the
-        <code>[Mouse]</code> to look around, hold <code>[Shift]</code> to move slower, press <code>[ESC]</code> to get
-        mouse cursor back.
-      </p>
-      <p id="mouse-unlocked">Click anywhere on the 3D scene to enter it and be able to move around within the world!</p>
+      <div id="info-and-controls">
+        <div class="controls-grid">
+          <!-- the toggles and the lighting settings (Vue, see src/components/ui/) -->
+          <div id="controls-slot"></div>
 
-      <label>
-        <input type="checkbox" id="camera-light-visible" />
-        Camera light visible (<code>[F]</code> key)
-      </label>
+          <!-- the key help: only while the pointer is locked, otherwise the "click anywhere" hint -->
+          <div class="help">
+            <h3>Controls</h3>
 
-      <label>
-        <input type="checkbox" id="wireframe-visible" />
-        Wireframe visible (<code>[X]</code> key)
-      </label>
+            <div id="mouse-unlocked">Click anywhere on the 3D scene to enter it and be able to move around within the world!</div>
 
-      <label>
-        <input type="checkbox" id="anchors-visible" />
-        Anchors visible (<code>[J]</code> key)
-      </label>
-
-      <label>
-        <input type="checkbox" id="portals-visible" />
-        Portals visible (<code>[K]</code> key)
-      </label>
-
-      <label>
-        <input type="checkbox" id="lights-visible" />
-        Lights visible (<code>[L]</code> key)
-      </label>
-
-      <p>
-        <small>
-          Double click: select the connected polygons of the same texture.<br />
-          <code>[C]</code> to clear selection<br />
-          <code>[Del]</code> to delete selected polygons<br />
-          Hold <code>[Shift]</code> while selecting to add to existing selection<br />
-          Hold <code>[Ctrl]</code> while selecting to remove from existing selection
-        </small>
-      </p>
-
-      <div class="settings-row">
-        Settings:
-        <span class="settings-indent">Lighting Mode:</span>
-        <select id="lighting-calculator-mode">
-          <option value="Arx">Arx</option>
-          <option value="Realistic">Realistic</option>
-          <!-- MaxBrightness and CompleteDarkness are implemented but hidden for now: 100% white is
-               blinding and 100% black is invisible without the wireframe. They stay reachable from
-               the URL (?lightingCalculatorMode=MaxBrightness|CompleteDarkness). -->
-        </select>
-        <span id="lighting-spinner" class="lighting-spinner" hidden title="Computing lighting..."></span>
-        <!-- advanced settings: the values stay reachable from the URL, the UI is hidden for now -->
-        <span class="settings-indent advanced" title="The minimum brightness of the Realistic palette. 0 = no ambient (like Fred's tool), 23 = the ambient floor of the game's original palette.">
-          Ambient floor:
-        </span>
-        <input type="number" id="ambient-floor" class="advanced" min="0" max="64" step="1" style="width: 4em" />
-        <label id="shadows-row" class="settings-indent" title="Occlusion test in the Realistic bake. Off = every light reaches every vertex it faces (the game's original palette has no occlusion).">
-          <input type="checkbox" id="shadows" /> Shadows
-        </label>
+            <div id="mouse-locked">
+              <p>
+                Press <code>W</code> <code>A</code> <code>S</code> <code>D</code> keys to move around<br />
+                move the <code>Mouse</code> to look around<br />
+                hold <code>Shift</code> to move slower<br />
+                press <code>Esc</code> to get mouse cursor back
+              </p>
+              <p>
+                <code>Double click</code> to select the connected polygons of the same texture<br />
+                <code>C</code> to clear selection<br />
+                <code>Del</code> to delete selected polygons<br />
+                Hold <code>Shift</code> while selecting to add to existing selection<br />
+                Hold <code>Ctrl</code> while selecting to remove from existing selection
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <p>
-        <small
-          >Add <code>?positionAt=x,y,z</code> and <code>?angle=pitch,yaw,roll</code> to open a level at a given game
-          position and orientation (degrees, a positive pitch looks down; the roll is ignored). The URL follows the
-          camera, so the current view can be copied from the address bar. The three angle values match the
-          <code>rotation</code> line of the game's debug hud, so it can be copied over directly.</small
-        >
-      </p>
+      <!-- temporarily hidden (the logger keeps writing into #logs, the dom stays) -->
+      <div id="logs-area" style="display: none">
+        <h3>Logs</h3>
+        <div id="logs"></div>
+      </div>
+    </main>
 
-      <h3>Logs</h3>
-      <div id="logs"></div>
+    <footer>
+      Arx Fatalis Browser Editor <span id="build-info">v0.13.0 (e6e2d88, 2026-10-19)</span>
+      &middot;
+      <a href="/">back to arx-tools.github.io</a>
+    </footer>
 
-      <p>
-        <small>
-          Arx Fatalis Browser Editor <span id="build-info">v0.12.0 (0ab3b14, 2026-10-19)</span>
-          &middot;
-          <a href="/">back to arx-tools.github.io</a>
-        </small>
-      </p>
-    </div>
+    <div id="ui-root"></div>
 
   </body>
 </html>
