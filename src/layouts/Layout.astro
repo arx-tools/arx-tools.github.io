@@ -26,6 +26,11 @@ const { path, title, description } = Astro.props
 // served from `public/editor`, so it carries its own copy of this snippet, added by the editor.
 const goatCounterSite = 'noden-gaming'
 
+// must be a `set:html` string and not an `is:inline` script body: Astro's `compressHTML` does not
+// touch the content of an inline script, so the source would ship with its whitespace and the
+// rest of the page would not. This one-liner is what ends up in the built HTML.
+const goatCounterPath = `window.goatcounter={path:function(p){return'/arx'+p}}`
+
 const pageTitle = title ? `${title} - ${brandTitle}` : brandTitle
 const pageDescription = description ?? brandTitle
 const pageURL = `https://arx-tools.github.io${path}`
@@ -61,14 +66,7 @@ const pageURL = `https://arx-tools.github.io${path}`
       /* only on the published site: the dev server and localhost are not counted anyway */
       import.meta.env.PROD && (
         <>
-          {/* must run before count.js: `/maps/` becomes `/arx/maps/` in the dashboard */}
-          <script is:inline>
-            window.goatcounter = {
-              path: function (p) {
-                return '/arx' + p
-              },
-            }
-          </script>
+          <script is:inline set:html={goatCounterPath} />
           <script
             is:inline
             async
