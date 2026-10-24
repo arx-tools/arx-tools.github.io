@@ -3,7 +3,7 @@
   "$id": "https://arx-tools.github.io/schemas/ftl.schema.json",
   "title": "FTL",
   "description": "FTL format of Arx Fatalis interpreted as JSON by arx-convert",
-  "x-generatedBy": "arx-convert@14.0.1",
+  "x-generatedBy": "arx-convert@15.0.0",
   "$defs": {
     "uint16": {
       "type": "integer",

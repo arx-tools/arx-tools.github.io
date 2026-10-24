@@ -3,7 +3,7 @@
   "$id": "https://arx-tools.github.io/schemas/amb.schema.json",
   "title": "AMB",
   "description": "AMB (Ambience) format of Arx Fatalis interpreted as JSON by arx-convert",
-  "x-generatedBy": "arx-convert@14.0.1",
+  "x-generatedBy": "arx-convert@15.0.0",
   "$defs": {
     "settings": {
       "type": "object",
