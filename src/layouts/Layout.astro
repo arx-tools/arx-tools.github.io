@@ -19,6 +19,13 @@ interface Props {
 const brandTitle = 'Arx Fatalis Maps, Mods and Modding Tools'
 const { path, title, description } = Astro.props
 
+// GoatCounter: cookieless pageview counting, nothing is stored in the browser and the IP address
+// is not stored either (only an aggregate country). `noden-gaming` is the site code of the
+// Noden Gaming YouTube channel, and every pageview here is reported under the `/arx` prefix, so
+// the channel's own pages and these stay apart in the same dashboard. The `/editor/` page is
+// served from `public/editor`, so it carries its own copy of this snippet, added by the editor.
+const goatCounterSite = 'noden-gaming'
+
 const pageTitle = title ? `${title} - ${brandTitle}` : brandTitle
 const pageDescription = description ?? brandTitle
 const pageURL = `https://arx-tools.github.io${path}`
@@ -49,6 +56,28 @@ const pageURL = `https://arx-tools.github.io${path}`
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    {
+      /* only on the published site: the dev server and localhost are not counted anyway */
+      import.meta.env.PROD && (
+        <>
+          {/* must run before count.js: `/maps/` becomes `/arx/maps/` in the dashboard */}
+          <script is:inline>
+            window.goatcounter = {
+              path: function (p) {
+                return '/arx' + p
+              },
+            }
+          </script>
+          <script
+            is:inline
+            async
+            data-goatcounter={`https://${goatCounterSite}.goatcounter.com/count`}
+            src="https://gc.zgo.at/count.js"
+          />
+        </>
+      )
+    }
   </head>
   <body>
     <slot />
