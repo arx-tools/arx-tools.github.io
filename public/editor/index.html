@@ -5,73 +5,25 @@
     <link rel="icon" type="image/x-icon" href="/editor/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arx Fatalis Browser Editor</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script type="module" crossorigin src="/editor/assets/index-CppHQ2D7.js"></script>
-    <link rel="stylesheet" crossorigin href="/editor/assets/index-0xpCihdD.css">
+    <!-- cookieless pageviews: the Noden Gaming GoatCounter site, under the /arx prefix (the same as
+         the arx-tools.github.io pages); localhost is not counted. Kept on one line, the build does
+         not minify the inline scripts of index.html -->
+    <script>window.goatcounter={path:function(p){return'/arx'+p}}</script>
+    <script
+      data-goatcounter="https://noden-gaming.goatcounter.com/count"
+      async
+      src="https://gc.zgo.at/count.js"
+    ></script>
+    <script type="module" crossorigin src="/editor/assets/index-oPWXZ769.js"></script>
+    <link rel="modulepreload" crossorigin href="/editor/assets/rolldown-runtime-Cyuzqnbw.js">
+    <link rel="modulepreload" crossorigin href="/editor/assets/vendor-D_iLLKor.js">
+    <link rel="modulepreload" crossorigin href="/editor/assets/three--pY15rVM.js">
+    <link rel="stylesheet" crossorigin href="/editor/assets/vendor-BSAoQJK3.css">
+    <link rel="stylesheet" crossorigin href="/editor/assets/index-B-M3BWQa.css">
   </head>
   <body>
+    <!-- the new shell (the `editor` modules); the old app is archived under `src/_old/` -->
     <div id="app"></div>
-
-    <main>
-      <div id="screen-wrapper">
-      <div id="loading-indicator">Loading, please wait...</div>
-      <canvas id="screen"></canvas>
-      <div id="crosshair" class="hidden">+</div>
-      <div id="camera-info"></div>
-    </div>
-
-      <div id="info-and-controls">
-        <div class="controls-grid">
-          <!-- the toggles and the lighting settings (Vue, see src/components/ui/) -->
-          <div id="controls-slot"></div>
-
-          <!-- the key help: only while the pointer is locked, otherwise the "click anywhere" hint -->
-          <div class="help">
-            <h3>Controls</h3>
-
-            <div id="mouse-unlocked">Click anywhere on the 3D scene to enter it and be able to move around within the world!</div>
-
-            <div id="mouse-locked">
-              <p>
-                Press <code>W</code> <code>A</code> <code>S</code> <code>D</code> keys to move around<br />
-                Move the <code>Mouse</code> to look around<br />
-                Hold <code>Shift</code> to move slower<br />
-                Press <code>F</code> to toggle flashlight <span id="flashlight-indicator" class="flashlight-indicator"></span><br />
-                Press <code>Esc</code> to get mouse cursor back
-              </p>
-              <p class="selection-help">
-                <code>Click</code> or <code>Click and drag</code> to select polygons<br />
-                <code>Double click</code> to select the connected polygons of the same texture<br />
-                <code>C</code> to clear selection<br />
-                <code>Del</code> to delete selected polygons<br />
-                Hold <code>Shift</code> while selecting to add to existing selection<br />
-                Hold <code>Ctrl</code> while selecting to remove from existing selection
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- temporarily hidden (the logger keeps writing into #logs, the dom stays) -->
-      <div id="logs-area" style="display: none">
-        <h3>Logs</h3>
-        <div id="logs"></div>
-      </div>
-    </main>
-
-    <footer>
-      Arx Fatalis Browser Editor <span id="build-info">v0.15.1 (96d057c, 2026-10-20)</span>
-      &middot;
-      <a href="/">back to arx-tools.github.io</a>
-    </footer>
-
-    <div id="ui-root"></div>
 
   </body>
 </html>
