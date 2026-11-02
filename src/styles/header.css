@@ -17,3 +17,12 @@ header img {
     display: none;
   }
 }
+
+/* the way to the tip jar: on the breadcrumb line, under the logo, right aligned and quiet, so it
+   reads as a remark and not as a call to action */
+.breadcrumbs .donate {
+  float: right;
+  color: inherit;
+  font-weight: normal;
+  white-space: nowrap;
+}
